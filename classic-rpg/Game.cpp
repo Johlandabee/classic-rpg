@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "windows.h"
 
 Game::Game()
 {
@@ -19,4 +20,5 @@ void Game::update(GameTime* game_time)
 
 void Game::draw(GameTime* game_time)
 {
+	m_pRenderer->draw(game_time);
 }

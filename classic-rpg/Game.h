@@ -13,4 +13,3 @@ private:
 	void update(GameTime* game_time) override;
 	void draw(GameTime* game_time) override;
 };
-

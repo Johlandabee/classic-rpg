@@ -1,8 +1,4 @@
 #include "GameLoop.h"
-#include "Renderer.h"
-
-GameTime* m_pGameTime;
-Renderer* m_pRenderer;
 
 GameLoop::GameLoop()
 {
@@ -14,6 +10,7 @@ GameLoop::GameLoop()
 GameLoop::~GameLoop()
 {
 	delete m_pGameTime;
+	delete m_pRenderer;
 }
 
 void GameLoop::initialize()
@@ -26,6 +23,8 @@ void GameLoop::run()
 	this->initialize();
 	while(true)
 	{
+		m_pGameTime->update();
+
 		this->update(m_pGameTime);
 		this->draw(m_pGameTime);
 	}
