@@ -1,6 +1,5 @@
 #pragma once
-class FileReader
-{
+class FileReader {
 public:
 	FileReader();
 	~FileReader();

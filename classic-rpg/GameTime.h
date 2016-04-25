@@ -2,8 +2,7 @@
 #include <chrono>
 using namespace std::chrono;
 
-class GameTime
-{
+class GameTime {
 public:
 	GameTime();
 	~GameTime();

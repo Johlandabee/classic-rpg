@@ -1,22 +1,19 @@
 #include "GameTime.h"
 
-GameTime::GameTime()
-{
+GameTime::GameTime() {
 	update();
 }
 
 
-GameTime::~GameTime()
-{
+GameTime::~GameTime() {
 }
 
-void GameTime::update()
-{
+void GameTime::update() {
 	time_stamp = high_resolution_clock::now();
 }
 
-__int64 GameTime::elapsed() const
-{
+__int64 GameTime::elapsed() const {
 	return duration_cast<microseconds>
-		((high_resolution_clock::now())-time_stamp).count();
+		((high_resolution_clock::now()) - time_stamp).count();
 }
+

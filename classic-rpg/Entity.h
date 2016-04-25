@@ -1,6 +1,5 @@
 #pragma once
-class Entity
-{
+class Entity {
 public:
 	Entity();
 	~Entity();

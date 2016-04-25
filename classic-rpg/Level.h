@@ -1,6 +1,5 @@
 #pragma once
-class Level
-{
+class Level {
 public:
 	Level();
 	~Level();

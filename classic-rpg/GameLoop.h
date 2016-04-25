@@ -2,8 +2,7 @@
 #include "GameTime.h"
 #include "Renderer.h"
 
-class GameLoop
-{
+class GameLoop {
 public:
 	GameLoop();
 	virtual ~GameLoop();

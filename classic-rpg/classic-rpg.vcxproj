@@ -116,6 +116,7 @@
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="GameTime.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Renderer.h" />
   </ItemGroup>
