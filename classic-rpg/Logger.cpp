@@ -33,7 +33,7 @@ void Logger::log(char* message, MessagePrefix message_prefix)
 	_log_file_stream.open(_log_file, ios::app);
 
 	if(_log_file_stream.good() && _log_file_stream.is_open()) {
-		_log_file_stream << get_prefix(message_prefix) << message;
+		_log_file_stream << get_prefix(message_prefix) << message << endl;
 		_log_file_stream.close();
 	} else {
 		cerr << "Could not write log file";
