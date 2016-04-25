@@ -16,7 +16,6 @@ int main(int argc, char* argv[], char* envp[]) {
 	}
 
 	delete pGame;
-	logger->log("Gracefully shutting down...");
 	return 0;
 }
 

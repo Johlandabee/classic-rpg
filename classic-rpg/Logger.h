@@ -19,7 +19,7 @@ public:
 		MsgPrfxInfo,
 		MsgPrfxError
 	};
-	void log(char* message, MessagePrefix message_prefix = MsgPrfxInfo);
+	void log(const char* message, MessagePrefix message_prefix = MsgPrfxInfo);
 	static Logger* instance(LogLevel log_mode = LogLevelNone);
 
 private:

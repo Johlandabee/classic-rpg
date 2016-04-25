@@ -21,7 +21,7 @@ Logger* Logger::instance(LogLevel log_mode) {
 	return _instance ? _instance : new Logger(log_mode);
 }
 
-void Logger::log(char* message, MessagePrefix message_prefix)
+void Logger::log(const char* message, MessagePrefix message_prefix)
 {
 	if (!_log_mode) {
 		_log_mode = LogLevelVerbose;
@@ -44,12 +44,12 @@ void Logger::log(char* message, MessagePrefix message_prefix)
 char* Logger::get_prefix(MessagePrefix message_prefix) const {
 	time_t time_ = time(nullptr);
 	tm tm_;
-	char ascii_time[32];
+	char ascii_time[30];
 
 	localtime_s(&tm_, &time_);
 	asctime_s(ascii_time, sizeof(ascii_time), &tm_);
 
-	char* selected_prefix = "";
+	char* selected_prefix;
 
 	switch(message_prefix) {
 		case Logger::MsgPrfxError:
@@ -64,7 +64,7 @@ char* Logger::get_prefix(MessagePrefix message_prefix) const {
 	}
 
 	const int t_size = strlen(ascii_time),
-		s_size = strlen(selected_prefix),
+		s_size = strlen(selected_prefix) + 1,
 		r_size = t_size + s_size;
 
 	int r_i = 0;
