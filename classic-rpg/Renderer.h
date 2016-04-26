@@ -32,6 +32,8 @@ private:
 
 	string _wndTitle;
 	bool _isFullscreen = false;
+
+	void check_status(string error_message, bool nuke = true);
 	int _status;
 };
 
