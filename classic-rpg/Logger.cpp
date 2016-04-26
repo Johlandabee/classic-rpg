@@ -1,11 +1,14 @@
 #include "Logger.h"
 #include <time.h>
 #include <iostream>
+#include <sstream>
 
 Logger* Logger::_instance = nullptr;
 
-Logger::Logger(LogLevel log_mode) {
-	_log_mode = log_mode;
+Logger::Logger(LogLevel log_level, string file_name) {
+	_log_level = log_level;
+	_log_file = file_name;
+	_instance = this;
 }
 
 Logger::~Logger()
@@ -16,24 +19,28 @@ Logger::~Logger()
 	}
 }
 
-
-Logger* Logger::instance(LogLevel log_mode) {
-	return _instance ? _instance : new Logger(log_mode);
+Logger* Logger::instance(LogLevel log_level /*= LogLevelNone */, char* file_name) {
+	return _instance ? _instance : new Logger(log_level, file_name);
 }
 
-void Logger::log(const char* message, MessagePrefix message_prefix)
+void Logger::log(string message, MessagePrefix message_prefix, int status)
 {
-	if (!_log_mode) {
-		_log_mode = LogLevelVerbose;
-	}
-	else if (_log_mode == LogLevelNone) {
+	if (_log_level == LogLevelNone) {
 		return;
 	}
 
 	_log_file_stream.open(_log_file, ios::app);
 
 	if(_log_file_stream.good() && _log_file_stream.is_open()) {
-		_log_file_stream << get_prefix(message_prefix) << message << endl;
+		_log_file_stream << '[' << get_time() << "][" 
+			<< get_prefix_str(message_prefix) << "]:\t\t\t" 
+			<< message;
+
+		if (status != 0) {
+			_log_file_stream << " Status: " << status;
+		}
+		_log_file_stream << endl;
+
 		_log_file_stream.close();
 	} else {
 		cerr << "Could not write log file";
@@ -41,56 +48,27 @@ void Logger::log(const char* message, MessagePrefix message_prefix)
 	}
 }
 
-char* Logger::get_prefix(MessagePrefix message_prefix) const {
+string Logger::get_time() {
 	time_t time_ = time(nullptr);
 	tm tm_;
-	char ascii_time[30];
-
 	localtime_s(&tm_, &time_);
-	asctime_s(ascii_time, sizeof(ascii_time), &tm_);
+	char buf[9];
+	strftime(buf, sizeof(buf), "%X", &tm_);
+	return buf;
+}
 
-	char* selected_prefix;
-
-	switch(message_prefix) {
+string Logger::get_prefix_str(MessagePrefix message_prefix) {
+	string str;
+	switch (message_prefix) {
 		case Logger::MsgPrfxError:
-			selected_prefix = "[Error]:      ";
+			str = "Error";
 			break;
 		case Logger::MsgPrfxInfo:
-			selected_prefix = "[Info]:       ";
+			str = "Info";
 			break;
 		case Logger::MsgPrfxWarning:
-			selected_prefix = "[Warning]:    ";
+			str = "Warning";
 			break;
 	}
-
-	const int t_size = strlen(ascii_time),
-		s_size = strlen(selected_prefix) + 1,
-		r_size = t_size + s_size;
-
-	int r_i = 0;
-
-	char* result = new char[r_size - 3];
-
-	for(int i = 0; i < t_size; i++) {
-		if (i == 0) {
-			result[r_i] = '[';
-			r_i++;
-		}
-
-		if(i == t_size - 1) {
-			result[r_i] = ']';
-			r_i++;
-			break;
-		}
-
-		result[r_i] = ascii_time[i];
-		r_i++;
-	}
-
-	for (int j = 0; j < s_size; j++) {
-		result[r_i] = selected_prefix[j];
-		r_i++;
-	}
-
-	return result;
+	return str;
 }

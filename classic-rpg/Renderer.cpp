@@ -1,74 +1,93 @@
 #include "Renderer.h"
+#include <iostream>
 
-//ToDo: Error handling/logging on all WINAPI calls
+using namespace std;
 
 Renderer::Renderer() {
-	
-	//SetConsoleTitle("Classic RPG");
-
-	const short i = 20;
-
-	/*
-	m_conSize = { i, i };
-	m_conCoord = {};
-	m_conRect = new _SMALL_RECT { 0,0,i,i };;
-	//m_conInfo[i*i];
-
-	for (int j = 0; j < (i*i); j++)
-	{
-		m_conInfo[j].Char.AsciiChar = 219;
-		m_conInfo[j].Attributes = FOREGROUND_GREEN;
-	}
-	*/
-
 	initialize();
 }
 
 
 Renderer::~Renderer() {
-	delete m_conRect;
+	delete _conRect;
 }
 
 
 void Renderer::initialize() {
+	//////////////////////////////////////
+	_sbInfo.cbSize = 96;
+	//////////////////////////////////////
 	updateBufferInfo();
-	//updateBufferSize();
+	//SetConsoleDisplayMode(_hOut, CONSOLE_FULLSCREEN_MODE, &_conSize);
 	toggleFullscreeen();
-	setWindowTitle("Classic RPG");
+	//setWindowTitle("Classic RPG");
+
+	const short i = 20;
+
+	/*
+	_conSize = { i, i };
+	_conCoord = {};
+	_conRect = new _SMALL_RECT{ 0,0,i,i };;
+	_chInfo[i*i];
+
+	for (int j = 0; j < (i*i); j++)
+	{
+		_chInfo[j].Char.AsciiChar = 219;
+		_chInfo[j].Attributes = FOREGROUND_GREEN;
+	}
+	*/
 }
 
-void Renderer::setWindowTitle(char* title) {
-	m_wndTitle = title;
-	SetConsoleTitle(m_wndTitle);
+void Renderer::setWindowTitle(string title) {
+	_status = SetConsoleTitle(_wndTitle.c_str());
+	check_status("WINAPI SetConsoleTitle() failed!");
+	_wndTitle = title;
 }
 
 void Renderer::updateBufferInfo() {
-	GetConsoleScreenBufferInfoEx(m_hOut, &m_sbInfo);
+	_status = GetConsoleScreenBufferInfoEx(_hOut, &_sbInfo);
+	check_status("WINAPI GetConsoleScreenBufferInfoEx() failed!");
 }
 
 void Renderer::updateBufferSize() {
-	SetConsoleScreenBufferSize(m_hOut, m_conSize);
+	_status = SetConsoleScreenBufferSize(_hOut, _conSize);
+	check_status("WINAPI SetConsoleScreenBufferSize() failed!");
 }
 
-// Public functions
 void Renderer::draw(GameTime* game_time) {
-	//WriteConsoleOutput(m_hOut, m_conInfo, m_conSize, m_conCoord, m_conRect);
+	_status = WriteConsoleOutputA(_hOut, _chInfo, _conSize, _conCoord, _conRect);
+	_status = 1;
+	check_status("WINAPI WriteConsoleOutput() failed!");
 }
 
 void Renderer::toggleFullscreeen() {
-	if (m_isFullscreen) {
-		m_isFullscreen = SetConsoleDisplayMode(m_hOut, CONSOLE_WINDOWED_MODE, &m_conSize);
-		updateBufferSize();
+	if (_isFullscreen) {
+		_status = SetConsoleDisplayMode(_hOut, CONSOLE_WINDOWED_MODE, &_conSize);
+		check_status("WINAPI SetConsoleDisplayMode() failed!");
+		_isFullscreen = false;
+	}
+	else if (_sbInfo.bFullscreenSupported){
+		_status = SetConsoleDisplayMode(_hOut, CONSOLE_FULLSCREEN_MODE, &_conSize);
+		check_status("WINAPI SetConsoleDisplayMode() failed!");
+		_isFullscreen = true;
+	}
 
-	}
-	else if (m_sbInfo.bFullscreenSupported){
-		m_isFullscreen = SetConsoleDisplayMode(m_hOut, CONSOLE_FULLSCREEN_MODE, &m_conSize);
-		updateBufferSize();
-	}
+	//updateBufferSize();
 }
 
 bool Renderer::isFullscreen() {
-	return m_isFullscreen;
+	return _isFullscreen;
 }
 
+void Renderer::check_status(string error_message, bool nuke) {
+	Logger* logger = Logger::instance();
+	if (_status == 0) {
+		_status = GetLastError();
+		logger->log(error_message, Logger::MsgPrfxError, _status);
+
+		if (nuke) {
+			exit(_status);
+		}
+	}
+}
 
