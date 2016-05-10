@@ -1,8 +1,10 @@
 #pragma once
 #include <windows.h>
+#include <string>
+#include <iostream>
 #include "GameTime.h"
 #include "Logger.h"
-#include <string>
+#include "Utils.h"
 
 using namespace std;
 
@@ -10,30 +12,27 @@ class Renderer {
 public:
 	Renderer();
 	~Renderer();
-	void initialize();
+	
 	void setWindowTitle(string title);
-	void updateBufferInfo();
-	void updateBufferSize();
 	void draw(GameTime* game_time);
-	void toggleFullscreeen();
-
-	bool isFullscreen();
 
 private:
-	const HANDLE _hOut = CreateFile("CONOUT$",
+	const HANDLE hOut_ = CreateFile("CONOUT$",
 		GENERIC_WRITE | GENERIC_READ, NULL, nullptr, OPEN_ALWAYS, NULL, nullptr);
 
-	CONSOLE_SCREEN_BUFFER_INFOEX _sbInfo;
-	COORD _conSize, _conCoord;
-	PSMALL_RECT _conRect;
+	CONSOLE_SCREEN_BUFFER_INFOEX screenBufferInfo_;
+	COORD screenBufferSize_, screenBufferPos;
+	PSMALL_RECT consoleRect_;
 
-	// ToDo: Need to solve this...
-	CHAR_INFO _chInfo[20 * 20];
+	CHAR_INFO charInfos_;
 
-	string _wndTitle;
-	bool _isFullscreen = false;
+	string windowTitle_;
 
-	void check_status(string error_message, bool nuke = true);
-	int _status;
+	void initialize();
+	void updateBufferInfo();
+	void updateBufferSize();
+	void toggleFullscreeen();
+
+	bool isFullscreen_ = false;
 };
 

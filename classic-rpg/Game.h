@@ -9,7 +9,7 @@ public:
 	~Game();
 private:
 	void initialize() override;
-	void update(GameTime* game_time) override;
-	void draw(GameTime* game_time) override;
+	void update(GameTime* gameTime) override;
+	void draw(GameTime* gameTime) override;
 };
 

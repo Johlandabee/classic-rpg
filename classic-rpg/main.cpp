@@ -1,11 +1,9 @@
 #include "Game.h"
 #include "Logger.h"
-#include "InputHook.h"
 
 int main(int argc, char* argv[], char* envp[]) {
 	// ToDo: Load log level from config file
 	Logger* logger = Logger::instance(Logger::LogLevelVerbose);
-	InputHook* inputHook = new InputHook();
 	
 	auto pGame = new Game();
 	// Allocation check
@@ -17,7 +15,6 @@ int main(int argc, char* argv[], char* envp[]) {
 		logger->log("Could not create Game() instance. Allocation error.", Logger::MsgPrfxError);
 	}
 
-	delete pGame;
+	delete pGame, logger;
 	return 0;
 }
-

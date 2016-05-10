@@ -3,52 +3,52 @@
 #include <iostream>
 #include <sstream>
 
-Logger* Logger::_instance = nullptr;
+Logger* Logger::pInstance_ = nullptr;
 
-Logger::Logger(LogLevel log_level, string file_name) {
-	_log_level = log_level;
-	_log_file = file_name;
-	_instance = this;
+Logger::Logger(LogLevel logLevel, string fileName) {
+	logLevel_ = logLevel;
+	logFile_ = fileName;
+	pInstance_ = this;
 }
 
 Logger::~Logger()
 {
-	if(_instance != nullptr) {
-		delete _instance;
-		_instance = nullptr;
+	if(pInstance_ != nullptr) {
+		delete pInstance_;
+		pInstance_ = nullptr;
 	}
 }
 
-Logger* Logger::instance(LogLevel log_level /*= LogLevelNone */, char* file_name) {
-	return _instance ? _instance : new Logger(log_level, file_name);
+Logger* Logger::instance(LogLevel logLevel /*= LogLevelNone */, char* fileName) {
+	return pInstance_ ? pInstance_ : new Logger(logLevel, fileName);
 }
 
-void Logger::log(string message, MessagePrefix message_prefix, int status)
+void Logger::log(string message, MessagePrefix messagePrefix, int status)
 {
-	if (_log_level == LogLevelNone) {
+	if (logLevel_ == LogLevelNone) {
 		return;
 	}
 
-	_log_file_stream.open(_log_file, ios::app);
+	logFileStream_.open(logFile_, ios::app);
 
-	if(_log_file_stream.good() && _log_file_stream.is_open()) {
-		_log_file_stream << '[' << get_time() << "][" 
-			<< get_prefix_str(message_prefix) << "]:\t\t\t" 
+	if(logFileStream_.good() && logFileStream_.is_open()) {
+		logFileStream_ << '[' << get_time() << "][" 
+			<< get_prefix_str(messagePrefix) << "]:\t\t\t" 
 			<< message;
 
 		if (status != 0) {
-			_log_file_stream << " Status: " << status;
+			logFileStream_ << " Status: " << status;
 		}
-		_log_file_stream << endl;
+		logFileStream_ << endl;
 
-		_log_file_stream.close();
+		logFileStream_.close();
 	} else {
 		cerr << "Could not write log file";
 		exit(0);
 	}
 }
 
-string Logger::get_time() {
+string Logger::getTime() {
 	time_t time_ = time(nullptr);
 	tm tm_;
 	localtime_s(&tm_, &time_);
@@ -57,9 +57,9 @@ string Logger::get_time() {
 	return buf;
 }
 
-string Logger::get_prefix_str(MessagePrefix message_prefix) {
+string Logger::getPrefixStr(MessagePrefix messagePrefix) {
 	string str;
-	switch (message_prefix) {
+	switch (messagePrefix) {
 		case Logger::MsgPrfxError:
 			str = "Error";
 			break;

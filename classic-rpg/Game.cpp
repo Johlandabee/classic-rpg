@@ -11,10 +11,10 @@ void Game::initialize() {
 	GameLoop::initialize();
 }
 
-void Game::update(GameTime* game_time) {
+void Game::update(GameTime* gameTime) {
 }
 
-void Game::draw(GameTime* game_time) {
-	m_pRenderer->draw(game_time);
+void Game::draw(GameTime* gameTime) {
+	m_pRenderer->draw(gameTime);
 }
 
