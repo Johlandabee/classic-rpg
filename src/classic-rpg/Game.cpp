@@ -1,5 +1,4 @@
-#include "Game.h"
-#include "windows.h"
+#include "lib/Game.h"
 
 Game::Game() {
 }
@@ -8,6 +7,8 @@ Game::~Game() {
 }
 
 void Game::initialize() {
+	m_pRenderer->setWindowSize(1280, 720);
+
 	GameLoop::initialize();
 }
 

@@ -18,9 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="FileReader.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -48,37 +45,52 @@
     <ClCompile Include="InputHook.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FileReader.h">
+    <ClInclude Include="lib\Config.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Level.h">
+    <ClInclude Include="lib\Entity.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
+    <ClInclude Include="lib\Game.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
+    <ClInclude Include="lib\GameLoop.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="lib\GameTime.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="GameLoop.h">
+    <ClInclude Include="lib\InputHook.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="lib\Level.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="GameTime.h">
+    <ClInclude Include="lib\Logger.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Logger.h">
+    <ClInclude Include="lib\Player.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="InputHook.h">
+    <ClInclude Include="lib\Renderer.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="lib\Utils.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config\game.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="config\config.ini" />
   </ItemGroup>
 </Project>

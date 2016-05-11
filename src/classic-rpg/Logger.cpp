@@ -1,7 +1,8 @@
-#include "Logger.h"
+#include "lib/Logger.h"
 #include <time.h>
 #include <iostream>
 #include <sstream>
+
 
 Logger* Logger::pInstance_ = nullptr;
 
@@ -32,8 +33,8 @@ void Logger::log(string message, MessagePrefix messagePrefix, int status)
 	logFileStream_.open(logFile_, ios::app);
 
 	if(logFileStream_.good() && logFileStream_.is_open()) {
-		logFileStream_ << '[' << get_time() << "][" 
-			<< get_prefix_str(messagePrefix) << "]:\t\t\t" 
+		logFileStream_ << '[' << getTime() << "][" 
+			<< getPrefixStr(messagePrefix) << "]:\t\t\t" 
 			<< message;
 
 		if (status != 0) {
@@ -48,8 +49,8 @@ void Logger::log(string message, MessagePrefix messagePrefix, int status)
 	}
 }
 
-string Logger::getTime() {
-	time_t time_ = time(nullptr);
+string Logger::getTime() const {
+	auto time_ = time(nullptr);
 	tm tm_;
 	localtime_s(&tm_, &time_);
 	char buf[9];
@@ -57,16 +58,16 @@ string Logger::getTime() {
 	return buf;
 }
 
-string Logger::getPrefixStr(MessagePrefix messagePrefix) {
+string Logger::getPrefixStr(MessagePrefix messagePrefix) const {
 	string str;
 	switch (messagePrefix) {
-		case Logger::MsgPrfxError:
+		case MsgPrfxError:
 			str = "Error";
 			break;
-		case Logger::MsgPrfxInfo:
+		case MsgPrfxInfo:
 			str = "Info";
 			break;
-		case Logger::MsgPrfxWarning:
+		case MsgPrfxWarning:
 			str = "Warning";
 			break;
 	}

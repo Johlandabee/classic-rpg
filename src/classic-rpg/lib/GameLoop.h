@@ -14,7 +14,7 @@ protected:
 	Renderer* m_pRenderer;
 
 private:
-	const int FPS = 60;
+	const int drawFps = 60, updateFps = 30;
 
 	virtual void update(GameTime* game_time) abstract;
 	virtual void draw(GameTime* game_time) abstract;

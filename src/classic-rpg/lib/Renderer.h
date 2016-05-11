@@ -1,10 +1,8 @@
 #pragma once
 #include <windows.h>
 #include <string>
-#include <iostream>
+
 #include "GameTime.h"
-#include "Logger.h"
-#include "Utils.h"
 
 using namespace std;
 
@@ -13,26 +11,40 @@ public:
 	Renderer();
 	~Renderer();
 	
+	void initialize();
 	void setWindowTitle(string title);
-	void draw(GameTime* game_time);
+	void setWindowSize(int x, int y);
+
+	void draw(GameTime* game_time) const;
+
+	bool isFullscreen() const;
 
 private:
 	const HANDLE hOut_ = CreateFile("CONOUT$",
 		GENERIC_WRITE | GENERIC_READ, NULL, nullptr, OPEN_ALWAYS, NULL, nullptr);
 
 	CONSOLE_SCREEN_BUFFER_INFOEX screenBufferInfo_;
-	COORD screenBufferSize_, screenBufferPos;
+	COORD screenBufferSize_, screenBufferPos_;
 	PSMALL_RECT consoleRect_;
 
 	CHAR_INFO charInfos_;
 
 	string windowTitle_;
 
-	void initialize();
 	void updateBufferInfo();
-	void updateBufferSize();
+	void updateBufferSize() const;
 	void toggleFullscreeen();
 
 	bool isFullscreen_ = false;
+	bool isInitialized_ = false;
+
+	struct RES {
+		int X;
+		int Y;
+	};
+
+	RES resolution_;
+
+	int charBufferSize;
 };
 

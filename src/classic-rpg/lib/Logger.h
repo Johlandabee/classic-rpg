@@ -1,6 +1,5 @@
 #pragma once
 #include <fstream>
-#include <string>
 
 using namespace std;
 
@@ -32,8 +31,8 @@ private:
 
 	Logger(const Logger&);
 
-	string getTime();
-	string getPrefixStr(Logger::MessagePrefix messagePrefix);
+	string getTime() const;
+	string getPrefixStr(Logger::MessagePrefix messagePrefix) const;
 
 	string logFile_;
 	ofstream logFileStream_;

@@ -1,4 +1,4 @@
-#include "InputHook.h"
+#include "lib/InputHook.h"
 
 HHOOK InputHook::m_hookId = NULL;
 

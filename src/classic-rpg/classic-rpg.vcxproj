@@ -110,8 +110,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Config.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameTime.cpp" />
@@ -121,18 +121,30 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="FileReader.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameLoop.h" />
-    <ClInclude Include="GameTime.h" />
-    <ClInclude Include="InputHook.h" />
-    <ClInclude Include="Level.h" />
-    <ClInclude Include="Logger.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="lib\Config.h" />
+    <ClInclude Include="lib\Entity.h" />
+    <ClInclude Include="lib\Game.h" />
+    <ClInclude Include="lib\GameLoop.h" />
+    <ClInclude Include="lib\GameTime.h" />
+    <ClInclude Include="lib\InputHook.h" />
+    <ClInclude Include="lib\Level.h" />
+    <ClInclude Include="lib\Logger.h" />
+    <ClInclude Include="lib\Player.h" />
+    <ClInclude Include="lib\Renderer.h" />
+    <ClInclude Include="lib\Utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="config\config.ini">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </Text>
+    <None Include="config\game.ini" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

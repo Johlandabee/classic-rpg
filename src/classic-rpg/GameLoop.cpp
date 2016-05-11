@@ -1,4 +1,4 @@
-#include "GameLoop.h"
+#include "lib/GameLoop.h"
 
 GameLoop::GameLoop() {
 	m_pGameTime = new GameTime();
@@ -12,11 +12,12 @@ GameLoop::~GameLoop() {
 }
 
 void GameLoop::initialize() {
-	// ToDo: Initialize all the things
+	m_pRenderer->initialize();
+
+	/*Todo*/
 }
 
 void GameLoop::run() {
-	this->initialize();
 	while (true) {
 		m_pGameTime->update();
 
