@@ -1,4 +1,4 @@
-#include "lib/GameTime.h"
+#include "h/GameTime.h"
 
 GameTime::GameTime() {
 	update();

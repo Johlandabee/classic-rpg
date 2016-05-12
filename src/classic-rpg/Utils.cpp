@@ -1,5 +1,5 @@
-#include "lib/Utils.h"
-#include "lib/Logger.h"
+#include "h/Utils.h"
+#include "h/Logger.h"
 #include <windows.h>
 
 

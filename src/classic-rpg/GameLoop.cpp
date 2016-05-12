@@ -1,4 +1,4 @@
-#include "lib/GameLoop.h"
+#include "h/GameLoop.h"
 
 GameLoop::GameLoop() {
 	m_pGameTime = new GameTime();

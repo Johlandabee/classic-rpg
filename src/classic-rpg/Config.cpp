@@ -1,4 +1,4 @@
-#include "lib/Config.h"
+#include "h/Config.h"
 
 Config::Config(string fileName){
 	fileName_ = fileName;

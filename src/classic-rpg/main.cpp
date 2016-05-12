@@ -1,5 +1,5 @@
-#include "lib/Logger.h"
-#include "lib/Game.h"
+#include "h/Logger.h"
+#include "h/Game.h"
 
 int main(int argc, char* argv[], char* envp[]) {
 	// ToDo: Load log level from config file
