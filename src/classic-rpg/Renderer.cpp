@@ -3,7 +3,8 @@
 #include "h/Logger.h"
 
 // ReSharper disable once CppPossiblyUninitializedMember
-Renderer::Renderer() {}
+Renderer::Renderer() {
+}
 
 
 Renderer::~Renderer() {
@@ -14,7 +15,7 @@ Renderer::~Renderer() {
 void Renderer::initialize() {
 	if (isInitialized_) return;
 
-	if(!resolution_.X || !resolution_.Y) {
+	if (!resolution_.X || !resolution_.Y) {
 		Logger::instance()->log("RENDERER INIT Resolution not set properly!", Logger::MsgPrfxError);
 		exit(0);
 	}
@@ -28,31 +29,31 @@ void Renderer::initialize() {
 	// Set inital window and buffer size
 	updateBufferInfo();
 
-	if(isFullscreen_){
+	if (isFullscreen_) {
 		toggleFullscreeen();
 	}
 
 	isInitialized_ = true;
 }
 
-void Renderer::setWindowSize(int x, int y){
-	resolution_ = { x, y };
+void Renderer::setWindowSize(int x, int y) {
+	resolution_ = {x, y};
 }
 
 void Renderer::setWindowTitle(string windowTitle) {
 	Utils::checkStatus(SetConsoleTitle(windowTitle.c_str()),
-		"WINAPI SetConsoleTitle() failed!");
+	                                  "WINAPI SetConsoleTitle() failed!");
 	windowTitle_ = windowTitle;
 }
 
 void Renderer::updateBufferInfo() {
 	Utils::checkStatus(GetConsoleScreenBufferInfoEx(hOut_, &screenBufferInfo_),
-		"WINAPI GetConsoleScreenBufferInfoEx() failed!");
+	                   "WINAPI GetConsoleScreenBufferInfoEx() failed!");
 }
 
 void Renderer::updateBufferSize() const {
 	Utils::checkStatus(SetConsoleScreenBufferSize(hOut_, screenBufferSize_),
-		"WINAPI SetConsoleScreenBufferSize() failed!");
+	                   "WINAPI SetConsoleScreenBufferSize() failed!");
 }
 
 void Renderer::draw(GameTime* game_time) const {
@@ -63,12 +64,12 @@ void Renderer::draw(GameTime* game_time) const {
 void Renderer::toggleFullscreeen() {
 	if (isFullscreen_) {
 		Utils::checkStatus(SetConsoleDisplayMode(hOut_, CONSOLE_WINDOWED_MODE, &screenBufferSize_),
-			"WINAPI SetConsoleDisplayMode() failed!");
+		                   "WINAPI SetConsoleDisplayMode() failed!");
 		isFullscreen_ = false;
 	}
-	else if (screenBufferInfo_.bFullscreenSupported){
+	else if (screenBufferInfo_.bFullscreenSupported) {
 		Utils::checkStatus(SetConsoleDisplayMode(hOut_, CONSOLE_FULLSCREEN_MODE, &screenBufferSize_),
-			"WINAPI SetConsoleDisplayMode() failed!");
+		                   "WINAPI SetConsoleDisplayMode() failed!");
 		isFullscreen_ = true;
 	}
 
@@ -78,5 +79,4 @@ void Renderer::toggleFullscreeen() {
 bool Renderer::isFullscreen() const {
 	return isFullscreen_;
 }
-
 

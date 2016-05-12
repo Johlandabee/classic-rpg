@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class Config{
+class Config {
 public:
 	Config(string fileName);
 	~Config();
@@ -17,3 +17,4 @@ private:
 	string fileName_;
 	void loadFile();
 };
+

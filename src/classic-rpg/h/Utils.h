@@ -3,7 +3,8 @@
 
 using namespace std;
 
-class Utils{
+class Utils {
 public:
 	static void Utils::checkStatus(int status, string errorMessage, bool nuke = true);
 };
+

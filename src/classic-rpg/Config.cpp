@@ -1,36 +1,37 @@
 #include "h/Config.h"
 
-Config::Config(string fileName){
+Config::Config(string fileName) {
 	fileName_ = fileName;
 }
 
-Config::~Config(){
+Config::~Config() {
 
 }
 
-string Config::getStringValue(string key, string defaultValue){
+string Config::getStringValue(string key, string defaultValue) {
 	// ToDo
 
 	return "";
 }
 
-int Config::getIntValue(string key, int defaultValue){
+int Config::getIntValue(string key, int defaultValue) {
 	// ToDo
 
 	return 0;
 }
 
-double Config::getDoubleValue(string key, double defaultValue){
+double Config::getDoubleValue(string key, double defaultValue) {
 	// ToDo
 
 	return 0.;
 }
 
-bool Config::getBooleanValue(string key, bool defaultValue){
+bool Config::getBooleanValue(string key, bool defaultValue) {
 	// ToDo
 	return false;
 }
 
-void loadFile(){
-	
+void loadFile() {
+
 }
+

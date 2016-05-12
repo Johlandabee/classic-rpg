@@ -68,7 +68,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)..\built\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -124,6 +126,18 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="h\Config.h" />
+    <ClInclude Include="h\Entity.h" />
+    <ClInclude Include="h\Game.h" />
+    <ClInclude Include="h\GameLoop.h" />
+    <ClInclude Include="h\GameTime.h" />
+    <ClInclude Include="h\InputHook.h" />
+    <ClInclude Include="h\Level.h" />
+    <ClInclude Include="h\Logger.h" />
+    <ClInclude Include="h\Player.h" />
+    <ClInclude Include="h\Renderer.h" />
+    <ClInclude Include="h\Utils.h" />
+    <ClInclude Include="h\TDictionary.h" />
     <ClInclude Include="lib\Config.h" />
     <ClInclude Include="lib\Entity.h" />
     <ClInclude Include="lib\Game.h" />
@@ -135,6 +149,7 @@
     <ClInclude Include="lib\Player.h" />
     <ClInclude Include="lib\Renderer.h" />
     <ClInclude Include="lib\Utils.h" />
+    <ClInclude Include="h\TList.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="config\config.ini">
@@ -149,4 +164,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <Target Name="CopyContent" AfterTargets="Build">
+  <ItemGroup>
+    <ContentFiles Include="config/*.ini" />
+  </ItemGroup>
+  <Copy DestinationFolder="$(OutputPath)"
+        SkipUnchangedFiles="True"
+        SourceFiles="@(ContentFiles)"
+        UseHardlinksIfPossible="True" />
+</Target>
 </Project>

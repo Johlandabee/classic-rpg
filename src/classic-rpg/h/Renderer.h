@@ -10,7 +10,7 @@ class Renderer {
 public:
 	Renderer();
 	~Renderer();
-	
+
 	void initialize();
 	void setWindowTitle(string title);
 	void setWindowSize(int x, int y);
@@ -21,7 +21,7 @@ public:
 
 private:
 	const HANDLE hOut_ = CreateFile("CONOUT$",
-		GENERIC_WRITE | GENERIC_READ, NULL, nullptr, OPEN_ALWAYS, NULL, nullptr);
+	                                GENERIC_WRITE | GENERIC_READ, NULL, nullptr, OPEN_ALWAYS, NULL, nullptr);
 
 	CONSOLE_SCREEN_BUFFER_INFOEX screenBufferInfo_;
 	COORD screenBufferSize_, screenBufferPos_;

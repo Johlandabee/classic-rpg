@@ -1,6 +1,7 @@
 #pragma once
 #include <windows.h>
 #include <iostream>
+
 class InputHook {
 public:
 	InputHook();
@@ -11,5 +12,6 @@ public:
 
 private:
 	HOOKPROC m_proc;
-    static HHOOK m_hookId;
+	static HHOOK m_hookId;
 };
+

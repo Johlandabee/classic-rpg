@@ -12,9 +12,8 @@ Logger::Logger(LogLevel logLevel, string fileName) {
 	pInstance_ = this;
 }
 
-Logger::~Logger()
-{
-	if(pInstance_ != nullptr) {
+Logger::~Logger() {
+	if (pInstance_ != nullptr) {
 		delete pInstance_;
 		pInstance_ = nullptr;
 	}
@@ -24,17 +23,16 @@ Logger* Logger::instance(LogLevel logLevel /*= LogLevelNone */, char* fileName) 
 	return pInstance_ ? pInstance_ : new Logger(logLevel, fileName);
 }
 
-void Logger::log(string message, MessagePrefix messagePrefix, int status)
-{
+void Logger::log(string message, MessagePrefix messagePrefix, int status) {
 	if (logLevel_ == LogLevelNone) {
 		return;
 	}
 
 	logFileStream_.open(logFile_, ios::app);
 
-	if(logFileStream_.good() && logFileStream_.is_open()) {
-		logFileStream_ << '[' << getTime() << "][" 
-			<< getPrefixStr(messagePrefix) << "]:\t\t\t" 
+	if (logFileStream_.good() && logFileStream_.is_open()) {
+		logFileStream_ << '[' << getTime() << "]["
+			<< getPrefixStr(messagePrefix) << "]:\t\t\t"
 			<< message;
 
 		if (status != 0) {
@@ -43,7 +41,8 @@ void Logger::log(string message, MessagePrefix messagePrefix, int status)
 		logFileStream_ << endl;
 
 		logFileStream_.close();
-	} else {
+	}
+	else {
 		cerr << "Could not write log file";
 		exit(0);
 	}
@@ -73,3 +72,4 @@ string Logger::getPrefixStr(MessagePrefix messagePrefix) const {
 	}
 	return str;
 }
+

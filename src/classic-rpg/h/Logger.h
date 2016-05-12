@@ -3,8 +3,7 @@
 
 using namespace std;
 
-class Logger
-{
+class Logger {
 public:
 	enum LogLevel {
 		LogLevelVerbose,
@@ -19,8 +18,9 @@ public:
 		MsgPrfxInfo,
 		MsgPrfxError
 	};
-	void log(string message, MessagePrefix messagePrefix = MsgPrfxInfo,  int status = 0);
-	static Logger* instance(LogLevel log_level=Logger::LogLevelNone, char* fileName="engine.log");
+
+	void log(string message, MessagePrefix messagePrefix = MsgPrfxInfo, int status = 0);
+	static Logger* instance(LogLevel log_level = Logger::LogLevelNone, char* fileName = "engine.log");
 
 private:
 	static Logger* pInstance_;
