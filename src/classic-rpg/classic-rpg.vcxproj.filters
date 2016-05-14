@@ -119,10 +119,10 @@
     <ClInclude Include="h\Utils.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="h\TDictionary.h">
+    <ClInclude Include="h\Dictionary.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="h\TList.h">
+    <ClInclude Include="h\List.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

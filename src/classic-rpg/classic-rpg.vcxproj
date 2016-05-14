@@ -137,7 +137,7 @@
     <ClInclude Include="h\Player.h" />
     <ClInclude Include="h\Renderer.h" />
     <ClInclude Include="h\Utils.h" />
-    <ClInclude Include="h\TDictionary.h" />
+    <ClInclude Include="h\Dictionary.h" />
     <ClInclude Include="lib\Config.h" />
     <ClInclude Include="lib\Entity.h" />
     <ClInclude Include="lib\Game.h" />
@@ -149,7 +149,7 @@
     <ClInclude Include="lib\Player.h" />
     <ClInclude Include="lib\Renderer.h" />
     <ClInclude Include="lib\Utils.h" />
-    <ClInclude Include="h\TList.h" />
+    <ClInclude Include="h\List.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="config\config.ini">
@@ -165,12 +165,9 @@
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <Target Name="CopyContent" AfterTargets="Build">
-  <ItemGroup>
-    <ContentFiles Include="config/*.ini" />
-  </ItemGroup>
-  <Copy DestinationFolder="$(OutputPath)"
-        SkipUnchangedFiles="True"
-        SourceFiles="@(ContentFiles)"
-        UseHardlinksIfPossible="True" />
-</Target>
+    <ItemGroup>
+      <ContentFiles Include="config/*.ini" />
+    </ItemGroup>
+    <Copy DestinationFolder="$(OutputPath)" SkipUnchangedFiles="True" SourceFiles="@(ContentFiles)" UseHardlinksIfPossible="True" />
+  </Target>
 </Project>
