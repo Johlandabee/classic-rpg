@@ -67,9 +67,6 @@ namespace common {
 	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	TValue Dictionary<TKey, TValue>::operator[](const TKey key) {
-		if ((!is_integral<TKey>::value && !is_floating_point<TKey>::value) && !key) {
-			throw invalid_argument("Argument is null");
-		}
 
 		pCurrentElement = pFirstElement;
 
@@ -114,14 +111,6 @@ namespace common {
 	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	void Dictionary<TKey, TValue>::add(TKey const& key, TValue const& value) {
-		if ((!is_integral<TKey>::value && !is_floating_point<TKey>::value) && !key) {
-			throw invalid_argument("Argument is null");
-		}
-
-		if ((!is_integral<TValue>::value && !is_floating_point<TValue>::value) && !value) {
-			throw invalid_argument("Argument is null");
-		}
-
 		if (containsKey(key))
 			throw invalid_argument("Key already in use");
 
@@ -142,10 +131,6 @@ namespace common {
 	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	void Dictionary<TKey, TValue>::remove(TKey const& key) {
-		if ((!is_integral<TKey>::value && !is_floating_point<TKey>::value) && !key) {
-			throw invalid_argument("Argument is null");
-		}
-
 		if (count_ > 0) {
 			pCurrentElement = pFirstElement;
 
@@ -183,9 +168,6 @@ namespace common {
 	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	bool Dictionary<TKey, TValue>::containsKey(TKey const& key) {
-		if ((!is_integral<TKey>::value && !is_floating_point<TKey>::value) && !key) {
-			throw invalid_argument("Argument is null");
-		}
 
 		if (count_ > 0) {
 			pCurrentElement = pFirstElement;
@@ -206,9 +188,6 @@ namespace common {
 	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	bool Dictionary<TKey, TValue>::containsValue(TValue const& value) {
-		if ((!is_integral<TValue>::value && !is_floating_point<TValue>::value) && !value) {
-			throw invalid_argument("Argument is null");
-		}
 
 		if (count_ > 0) {
 			pCurrentElement = pFirstElement;

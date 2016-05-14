@@ -1,20 +1,22 @@
 #pragma once
-#include <string>
+#include "Dictionary.h"
 
 using namespace std;
+using namespace common;
 
 class Config {
+	Dictionary<string, string>* dictionary_ = nullptr;
+	string fileName_;
+
+	void loadFile() const;
+
 public:
-	Config(string fileName);
+	explicit Config(string fileName);
 	~Config();
 
-	string getStringValue(string key, string defaultValue = "");
-	int getIntValue(string key, int defaultValue = 0);
-	double getDoubleValue(string key, double defaultValue = 0.0);
-	bool getBooleanValue(string key, bool defaultValue = false);
-
-private:
-	string fileName_;
-	void loadFile();
+	string getStringValue(string const& key, string defaultValue = "") const;
+	int getIntValue(string const& key, int defaultValue) const;
+	double getDoubleValue(string const& key, double defaultValue) const;
+	bool getBooleanValue(string const& key, bool defaultValue) const;
 };
 

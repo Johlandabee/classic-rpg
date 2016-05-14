@@ -42,9 +42,6 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="InputHook.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Config.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -53,39 +50,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\Config.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\Entity.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\Game.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\GameLoop.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\GameTime.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\InputHook.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\Level.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\Logger.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\Player.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\Renderer.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\Utils.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="h\Config.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -99,9 +63,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="h\GameTime.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="h\InputHook.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="h\Level.h">
@@ -128,8 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="config\game.ini" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="config\config.ini" />
+    <None Include="config\base.ini" />
   </ItemGroup>
 </Project>

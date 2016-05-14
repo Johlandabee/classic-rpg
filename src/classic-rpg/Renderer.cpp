@@ -20,7 +20,7 @@ void Renderer::initialize() {
 		exit(0);
 	}
 
-	charBufferSize = 1024;
+	charBufferSize = 255;
 
 	/////////////// Do not move /////////////
 	screenBufferInfo_.cbSize = charBufferSize;
@@ -29,7 +29,7 @@ void Renderer::initialize() {
 	// Set inital window and buffer size
 	updateBufferInfo();
 
-	if (isFullscreen_) {
+	if (isFullscreen) {
 		toggleFullscreeen();
 	}
 
@@ -62,21 +62,17 @@ void Renderer::draw(GameTime* game_time) const {
 }
 
 void Renderer::toggleFullscreeen() {
-	if (isFullscreen_) {
+	if (isFullscreen) {
 		Utils::checkStatus(SetConsoleDisplayMode(hOut_, CONSOLE_WINDOWED_MODE, &screenBufferSize_),
 		                   "WINAPI SetConsoleDisplayMode() failed!");
-		isFullscreen_ = false;
+		isFullscreen = false;
 	}
 	else if (screenBufferInfo_.bFullscreenSupported) {
 		Utils::checkStatus(SetConsoleDisplayMode(hOut_, CONSOLE_FULLSCREEN_MODE, &screenBufferSize_),
 		                   "WINAPI SetConsoleDisplayMode() failed!");
-		isFullscreen_ = true;
+		isFullscreen = true;
 	}
 
 	updateBufferSize();
-}
-
-bool Renderer::isFullscreen() const {
-	return isFullscreen_;
 }
 

@@ -1,25 +1,23 @@
 #include "h/Logger.h"
 #include "h/Game.h"
-#include "h/List.h"
-
-using namespace common;
+#include "h/Config.h"
 
 int main(int argc, char* argv[], char* envp[]) {
-	// ToDo: Load log level from config file
-	auto logger = Logger::instance(Logger::LogLevelVerbose);
-	auto pGame = new Game();
 
-	// Allocation check
-	if (pGame) {
-		// Enter main loop
-		logger->log("Starting up...");
-		pGame->run();
-	}
-	else {
-		logger->log("Could not create Game() instance. Allocation error.", Logger::MsgPrfxError);
+	auto pConfig = Config("base.ini");
+	auto logFile = pConfig.getStringValue("sLogFile", "engine.log");
+	
+	auto pLogger = Logger::instance(logFile, Logger::LogLevelVerbose);
+	
+	pLogger->log("Firing the oven...", Logger::MsgPrfxInfo);
+
+	try {
+		auto game = Game();
+		game.run();
+	} catch (exception e) {
+		pLogger->log("An error occurred withing the Game() instance", Logger::MsgPrfxError);
 	}
 
-	delete pGame , logger;
 	return 0;
 }
 

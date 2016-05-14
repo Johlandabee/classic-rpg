@@ -19,8 +19,8 @@ public:
 		MsgPrfxError
 	};
 
-	void log(string message, MessagePrefix messagePrefix = MsgPrfxInfo, int status = 0);
-	static Logger* instance(LogLevel log_level = Logger::LogLevelNone, char* fileName = "engine.log");
+	void log(string message, MessagePrefix messagePrefix = MsgPrfxInfo, int status = 0) const;
+	static Logger* instance(string fileName = "engine.log", LogLevel log_level = LogLevelNone);
 
 private:
 	static Logger* pInstance_;
@@ -31,10 +31,9 @@ private:
 
 	Logger(const Logger&);
 
-	string getTime() const;
-	string getPrefixStr(Logger::MessagePrefix messagePrefix) const;
+	static string getTime();
+	static string getPrefixStr(Logger::MessagePrefix messagePrefix);
 
 	string logFile_;
-	ofstream logFileStream_;
 };
 

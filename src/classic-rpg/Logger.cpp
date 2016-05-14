@@ -19,28 +19,30 @@ Logger::~Logger() {
 	}
 }
 
-Logger* Logger::instance(LogLevel logLevel /*= LogLevelNone */, char* fileName) {
+Logger* Logger::instance(string fileName, LogLevel logLevel /*= LogLevelNone */) {
 	return pInstance_ ? pInstance_ : new Logger(logLevel, fileName);
 }
 
-void Logger::log(string message, MessagePrefix messagePrefix, int status) {
+void Logger::log(string message, MessagePrefix messagePrefix, int status) const {
 	if (logLevel_ == LogLevelNone) {
 		return;
 	}
+	
+	ofstream logFileStream;
 
-	logFileStream_.open(logFile_, ios::app);
+	logFileStream.open(logFile_, ios::app);
 
-	if (logFileStream_.good() && logFileStream_.is_open()) {
-		logFileStream_ << '[' << getTime() << "]["
+	if (logFileStream.good() && logFileStream.is_open()) {
+		logFileStream << '[' << getTime() << "]["
 			<< getPrefixStr(messagePrefix) << "]:\t\t\t"
 			<< message;
 
 		if (status != 0) {
-			logFileStream_ << " Status: " << status;
+			logFileStream << " Status: " << status;
 		}
-		logFileStream_ << endl;
+		logFileStream << endl;
 
-		logFileStream_.close();
+		logFileStream.close();
 	}
 	else {
 		cerr << "Could not write log file";
@@ -48,7 +50,7 @@ void Logger::log(string message, MessagePrefix messagePrefix, int status) {
 	}
 }
 
-string Logger::getTime() const {
+string Logger::getTime() {
 	auto time_ = time(nullptr);
 	tm tm_;
 	localtime_s(&tm_, &time_);
@@ -57,7 +59,7 @@ string Logger::getTime() const {
 	return buf;
 }
 
-string Logger::getPrefixStr(MessagePrefix messagePrefix) const {
+string Logger::getPrefixStr(MessagePrefix messagePrefix) {
 	string str;
 	switch (messagePrefix) {
 		case MsgPrfxError:

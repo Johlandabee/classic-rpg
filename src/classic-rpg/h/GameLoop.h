@@ -10,8 +10,8 @@ public:
 
 protected:
 	virtual void initialize();
-	GameTime* m_pGameTime;
-	Renderer* m_pRenderer;
+	GameTime* pGameTime;
+	Renderer* pRenderer;
 
 private:
 	const int drawFps = 60, updateFps = 30;

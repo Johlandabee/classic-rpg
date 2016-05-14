@@ -105,10 +105,6 @@ namespace common {
 	/*-----------------------------------------------------------------------------------------------*/
 	template <class T>
 	void List<T>::add(T const& element) {
-		if ((!is_integral<T>::value && !is_floating_point<T>::value) && !element) {
-			throw invalid_argument("Argument is null");
-		}
-
 		if (pFirstElement == nullptr) {
 			pFirstElement = new ListElement<T>(element);
 			pLastElement = pFirstElement;
@@ -125,10 +121,6 @@ namespace common {
 	/*-----------------------------------------------------------------------------------------------*/
 	template <class T>
 	void List<T>::remove(T const& element) {
-		if ((!is_integral<T>::value && !is_floating_point<T>::value) && !element) {
-			throw invalid_argument("Argument is null");
-		}
-
 		if (count_ > 0) {
 			pCurrenElement = pFirstElement;
 
@@ -166,10 +158,6 @@ namespace common {
 	/*-----------------------------------------------------------------------------------------------*/
 	template <class T>
 	bool List<T>::contains(T const& element) {
-		if ((!is_integral<T>::value && !is_floating_point<T>::value) && !element) {
-			throw invalid_argument("Argument is null");
-		}
-
 		if (count_ > 0) {
 			pCurrenElement = pFirstElement;
 

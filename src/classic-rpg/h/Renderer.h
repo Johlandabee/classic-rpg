@@ -17,7 +17,7 @@ public:
 
 	void draw(GameTime* game_time) const;
 
-	bool isFullscreen() const;
+	bool isFullscreen = false;
 
 private:
 	const HANDLE hOut_ = CreateFile("CONOUT$",
@@ -35,7 +35,6 @@ private:
 	void updateBufferSize() const;
 	void toggleFullscreeen();
 
-	bool isFullscreen_ = false;
 	bool isInitialized_ = false;
 
 	struct RES {
