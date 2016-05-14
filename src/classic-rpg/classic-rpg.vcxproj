@@ -70,6 +70,10 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\built\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>BackSlash</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>BackSlash</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -137,10 +141,17 @@
     <ClInclude Include="h\Utils.h" />
     <ClInclude Include="h\Dictionary.h" />
     <ClInclude Include="h\List.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\base.ini" />
     <None Include="config\game.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="sword.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
