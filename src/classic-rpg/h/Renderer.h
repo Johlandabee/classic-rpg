@@ -13,15 +13,14 @@ public:
 
 	void initialize();
 	void setWindowTitle(string title);
-	void setWindowSize(int x, int y);
+	void setWindowSize(short x, short y);
 
 	void draw(GameTime* game_time) const;
 
 	bool isFullscreen = false;
 
 private:
-	const HANDLE hOut_ = CreateFile("CONOUT$",
-	                                GENERIC_WRITE | GENERIC_READ, NULL, nullptr, OPEN_ALWAYS, NULL, nullptr);
+	const HANDLE handle_ = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	CONSOLE_SCREEN_BUFFER_INFOEX screenBufferInfo_;
 	COORD screenBufferSize_, screenBufferPos_;
@@ -37,12 +36,7 @@ private:
 
 	bool isInitialized_ = false;
 
-	struct RES {
-		int X;
-		int Y;
-	};
-
-	RES resolution_;
+	SMALL_RECT windowRect_;
 
 	int charBufferSize;
 };
