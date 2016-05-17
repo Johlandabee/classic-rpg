@@ -12,6 +12,7 @@ Logger::Logger(LogLevel logLevel, string fileName) {
 	pInstance_ = this;
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 Logger::~Logger() {
 	if (pInstance_ != nullptr) {
 		delete pInstance_;
@@ -19,10 +20,12 @@ Logger::~Logger() {
 	}
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 Logger* Logger::instance(string fileName, LogLevel logLevel /*= LogLevelNone */) {
 	return pInstance_ ? pInstance_ : new Logger(logLevel, fileName);
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 void Logger::log(string message, MessagePrefix messagePrefix, int status) const {
 	if (logLevel_ == LogLevelNone) {
 		return;
@@ -50,6 +53,7 @@ void Logger::log(string message, MessagePrefix messagePrefix, int status) const 
 	}
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 string Logger::getTime() {
 	auto time_ = time(nullptr);
 	tm tm_;
@@ -59,6 +63,7 @@ string Logger::getTime() {
 	return buf;
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 string Logger::getPrefixStr(MessagePrefix messagePrefix) {
 	string str;
 	switch (messagePrefix) {

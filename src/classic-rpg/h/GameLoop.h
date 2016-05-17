@@ -10,11 +10,14 @@ public:
 
 protected:
 	virtual void initialize();
-	GameTime* pGameTime;
 	Renderer* pRenderer;
 
+	bool isFixedFrameRate = true;
+	double desiredFrameRate = 60.0;
+
 private:
-	const int drawFps = 60, updateFps = 30;
+	GameTime* pGameTime;
+	bool running_;
 
 	virtual void update(GameTime* game_time) abstract;
 	virtual void draw(GameTime* game_time) abstract;

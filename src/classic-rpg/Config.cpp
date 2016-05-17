@@ -13,11 +13,13 @@ Config::Config(string fileName) {
 	loadFile();
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 Config::~Config() {
 	delete dictionary_;
 	dictionary_ = nullptr;
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 string Config::getStringValue(string const& key, string defaultValue) const {
 	if(dictionary_->containsKey(key)) {
 		return dictionary_->operator[](key);;
@@ -26,6 +28,7 @@ string Config::getStringValue(string const& key, string defaultValue) const {
 	return defaultValue;
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 int Config::getIntValue(string const& key, int defaultValue) const {
 	if (dictionary_->containsKey(key)) {
 		return atoi(dictionary_->operator[](key).c_str());;
@@ -34,6 +37,7 @@ int Config::getIntValue(string const& key, int defaultValue) const {
 	return defaultValue;
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 double Config::getDoubleValue(string const& key, double defaultValue) const {
 	if (dictionary_->containsKey(key)) {
 		return atof(dictionary_->operator[](key).c_str());;
@@ -42,6 +46,7 @@ double Config::getDoubleValue(string const& key, double defaultValue) const {
 	return defaultValue;
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 bool Config::getBooleanValue(string const& key, bool defaultValue) const {
 	if (dictionary_->containsKey(key)) {
 		auto value = dictionary_->operator[](key);
@@ -57,6 +62,7 @@ bool Config::getBooleanValue(string const& key, bool defaultValue) const {
 	return defaultValue;
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 void Config::loadFile() const {
 	ifstream infile(fileName_);
 	string line;

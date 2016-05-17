@@ -6,12 +6,12 @@
 Renderer::Renderer() {
 }
 
-
+/*-----------------------------------------------------------------------------------------------*/
 Renderer::~Renderer() {
 	delete consoleRect_;
 }
 
-
+/*-----------------------------------------------------------------------------------------------*/
 void Renderer::initialize() {
 	if (isInitialized_) return;
 
@@ -31,7 +31,11 @@ void Renderer::initialize() {
 	isInitialized_ = true;
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 void Renderer::setWindowSize(short x, short y) {
+
+	// TODO: All the things
+
 
 	CONSOLE_FONT_INFOEX fontInfo;
 	CONSOLE_CURSOR_INFO cursorInfo;
@@ -80,10 +84,9 @@ void Renderer::setWindowSize(short x, short y) {
 	
 	
 	*/
-
-	int i = 0;
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 void Renderer::setWindowTitle(string windowTitle) {
 	Utils::checkStatus(SetConsoleTitle(windowTitle.c_str()),
 	                    "WINAPI SetConsoleTitle() failed!");
@@ -91,18 +94,22 @@ void Renderer::setWindowTitle(string windowTitle) {
 	windowTitle_ = windowTitle;
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 void Renderer::updateBufferInfo() {
-
+	// Todo
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 void Renderer::updateBufferSize() const {
-
+	// Todo
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 void Renderer::draw(GameTime* game_time) const {
-
+	// Todo
 }
 
+/*-----------------------------------------------------------------------------------------------*/
 void Renderer::toggleFullscreeen() {
 	if (isFullscreen) {
 
