@@ -17,6 +17,8 @@ public:
 
 	void draw(GameTime* game_time) const;
 
+	string title() const;
+
 	bool isFullscreen = false;
 
 private:

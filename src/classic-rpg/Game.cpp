@@ -1,6 +1,7 @@
+#pragma once
 #include "h/Game.h"
 #include "h/Config.h"
-#include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -28,16 +29,29 @@ void Game::initialize() {
 	isFixedFrameRate = config_.getBooleanValue("bFixedFrameRate", true);
 	desiredFrameRate = config_.getDoubleValue("dDesiredFrameRate", 60.0);
 
+	showPerformanceInfo_ = config_.getBooleanValue("bShowPerformanceInfo", false);
+
 	GameLoop::initialize();
 }
 
 /*-----------------------------------------------------------------------------------------------*/
 void Game::update(GameTime* gameTime) {
+
+	// Update performance information if enabled (Window title)
+	if (showPerformanceInfo_) {
+		auto ss = stringstream();
+		if(!perfTitle) {
+			ss << pRenderer->title();
+			perfTitle = true;
+		}
+		ss << " | FPS: " << gameTime->fps()
+			<< " FrameTime: " << gameTime->frameTimeNs() << "ns";
+		pRenderer->setWindowTitle(ss.str());
+	}
 }
 
 /*-----------------------------------------------------------------------------------------------*/
 void Game::draw(GameTime* gameTime) {
-	cout << gameTime->fps() << endl;
 	pRenderer->draw(gameTime);
 }
 

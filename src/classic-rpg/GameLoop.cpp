@@ -34,7 +34,6 @@ void GameLoop::run() {
 		this->draw(pGameTime);
 		
 		pGameTime->end();
-		pGameTime->wait();
 	}
 }
 

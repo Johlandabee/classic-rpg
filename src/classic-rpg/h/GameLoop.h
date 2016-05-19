@@ -13,7 +13,7 @@ protected:
 	Renderer* pRenderer;
 
 	bool isFixedFrameRate = true;
-	double desiredFrameRate = 60.0;
+	double desiredFrameRate = 59.0;
 
 private:
 	GameTime* pGameTime;

@@ -110,6 +110,12 @@ void Renderer::draw(GameTime* game_time) const {
 }
 
 /*-----------------------------------------------------------------------------------------------*/
+
+string Renderer::title() const {
+	return windowTitle_;
+}
+
+/*-----------------------------------------------------------------------------------------------*/
 void Renderer::toggleFullscreeen() {
 	if (isFullscreen) {
 
