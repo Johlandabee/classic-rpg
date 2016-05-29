@@ -10,16 +10,15 @@ public:
 
 protected:
 	virtual void initialize();
-	Renderer* pRenderer;
+	Renderer* renderer;
 
 	bool isFixedFrameRate = true;
 	double desiredFrameRate = 59.0;
 
 private:
-	GameTime* pGameTime;
-	bool running_;
+	GameTime* gameTime;
+	bool isRunning;
 
 	virtual void update(GameTime* game_time) abstract;
 	virtual void draw(GameTime* game_time) abstract;
 };
-

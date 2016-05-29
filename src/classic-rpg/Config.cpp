@@ -8,48 +8,46 @@ using namespace std;
 using namespace common;
 
 Config::Config(string fileName) {
-	fileName_ = fileName;
-	dictionary_ = new Dictionary<string, string>;
+	this->fileName = fileName;
+	this->props = new Dictionary<string, string>;
 	loadFile();
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+Config::Config() {
+}
+
 Config::~Config() {
-	delete dictionary_;
-	dictionary_ = nullptr;
+	delete props;
+	props = nullptr;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 string Config::getStringValue(string const& key, string defaultValue) const {
-	if(dictionary_->containsKey(key)) {
-		return dictionary_->operator[](key);;
+	if (props->containsKey(key)) {
+		return props->operator[](key);;
 	}
 
 	return defaultValue;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 int Config::getIntValue(string const& key, int defaultValue) const {
-	if (dictionary_->containsKey(key)) {
-		return atoi(dictionary_->operator[](key).c_str());;
+	if (props->containsKey(key)) {
+		return atoi(props->operator[](key).c_str());;
 	}
 
 	return defaultValue;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 double Config::getDoubleValue(string const& key, double defaultValue) const {
-	if (dictionary_->containsKey(key)) {
-		return atof(dictionary_->operator[](key).c_str());;
+	if (props->containsKey(key)) {
+		return atof(props->operator[](key).c_str());;
 	}
 
 	return defaultValue;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 bool Config::getBooleanValue(string const& key, bool defaultValue) const {
-	if (dictionary_->containsKey(key)) {
-		auto value = dictionary_->operator[](key);
+	if (props->containsKey(key)) {
+		auto value = props->operator[](key);
 		transform(value.begin(), value.end(), value.begin(), ::tolower);
 		istringstream iss(value);
 		bool bValue;
@@ -62,29 +60,28 @@ bool Config::getBooleanValue(string const& key, bool defaultValue) const {
 	return defaultValue;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 void Config::loadFile() const {
-	ifstream infile(fileName_);
+	ifstream infile(fileName);
 	string line;
 
 	const auto sepperator = '=';
 	const auto comment = '#';
 
-	if(infile.good() && infile.is_open()) {
-		while(getline(infile, line)) {
+	if (infile.good() && infile.is_open()) {
+		while (getline(infile, line)) {
 			string key, value;
-			
-			if(line.find(sepperator) == -1 || line.find(comment) > -1) {
+
+			if (line.find(sepperator) == -1 || line.find(comment) > -1) {
 				continue;
 			}
 
 			key = line.substr(0, line.find_first_of(sepperator));
 			value = line.substr(line.find_first_of(sepperator) + 1, line.length() - 1);
 
-			dictionary_->add(key, value);
+			props->add(key, value);
 		}
-	} else {
+	}
+	else {
 		throw logic_error("Could not open config file");
 	}
 }
-

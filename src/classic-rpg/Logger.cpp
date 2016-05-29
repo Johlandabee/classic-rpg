@@ -3,37 +3,33 @@
 #include <iostream>
 #include <sstream>
 
-
-Logger* Logger::pInstance_ = nullptr;
+Logger* Logger::pInstance = nullptr;
 
 Logger::Logger(LogLevel logLevel, string fileName) {
-	logLevel_ = logLevel;
-	logFile_ = fileName;
-	pInstance_ = this;
+	this->logLevel = logLevel;
+	logFile = fileName;
+	pInstance = this;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 Logger::~Logger() {
-	if (pInstance_ != nullptr) {
-		delete pInstance_;
-		pInstance_ = nullptr;
+	if (pInstance != nullptr) {
+		delete pInstance;
+		pInstance = nullptr;
 	}
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 Logger* Logger::instance(string fileName, LogLevel logLevel /*= LogLevelNone */) {
-	return pInstance_ ? pInstance_ : new Logger(logLevel, fileName);
+	return pInstance ? pInstance : new Logger(logLevel, fileName);
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 void Logger::log(string message, MessagePrefix messagePrefix, int status) const {
-	if (logLevel_ == LogLevelNone) {
+	if (logLevel == LogLevelNone) {
 		return;
 	}
-	
+
 	ofstream logFileStream;
 
-	logFileStream.open(logFile_, ios::app);
+	logFileStream.open(logFile, ios::app);
 
 	if (logFileStream.good() && logFileStream.is_open()) {
 		logFileStream << '[' << getTime() << "]["
@@ -53,7 +49,6 @@ void Logger::log(string message, MessagePrefix messagePrefix, int status) const 
 	}
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 string Logger::getTime() {
 	auto time_ = time(nullptr);
 	tm tm_;
@@ -63,20 +58,18 @@ string Logger::getTime() {
 	return buf;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 string Logger::getPrefixStr(MessagePrefix messagePrefix) {
 	string str;
 	switch (messagePrefix) {
-		case MsgPrfxError:
-			str = "Error";
-			break;
-		case MsgPrfxInfo:
-			str = "Info";
-			break;
-		case MsgPrfxWarning:
-			str = "Warning";
-			break;
+	case MsgPrfxError:
+		str = "Error";
+		break;
+	case MsgPrfxInfo:
+		str = "Info";
+		break;
+	case MsgPrfxWarning:
+		str = "Warning";
+		break;
 	}
 	return str;
 }
-

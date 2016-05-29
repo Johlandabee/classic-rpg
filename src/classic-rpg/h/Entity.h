@@ -4,4 +4,3 @@ public:
 	Entity();
 	~Entity();
 };
-

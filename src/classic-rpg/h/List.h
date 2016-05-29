@@ -21,7 +21,6 @@ namespace common {
 		ListElement<T>* pPreviousElement = nullptr;
 	};
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class T>
 	class List {
 		ListElement<T>* pFirstElement = nullptr;
@@ -43,16 +42,14 @@ namespace common {
 		bool contains(T const& element);
 	};
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class T>
 	List<T>::List() {
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class T>
 	List<T>::~List() {
-		delete pLastElement ,
-			pCurrenElement ,
+		delete pLastElement,
+			pCurrenElement,
 			pFirstElement;
 
 		pLastElement = nullptr;
@@ -60,7 +57,6 @@ namespace common {
 		pFirstElement = nullptr;
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class T>
 	T List<T>::operator[](const int index) {
 		if (index < 0 || index > count_ - 1)
@@ -78,7 +74,6 @@ namespace common {
 		return pCurrenElement->value;
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class T>
 	void List<T>::clear() {
 		if (count_ > 0) {
@@ -102,7 +97,6 @@ namespace common {
 		}
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class T>
 	void List<T>::add(T const& element) {
 		if (pFirstElement == nullptr) {
@@ -118,7 +112,6 @@ namespace common {
 		count_++;
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class T>
 	void List<T>::remove(T const& element) {
 		if (count_ > 0) {
@@ -126,7 +119,6 @@ namespace common {
 
 			for (auto i = 1; i < count_; i++) {
 				if (pCurrenElement->value == element) {
-
 					if (pCurrenElement->pPreviousElement && pCurrenElement->pNextElement) {
 						pCurrenElement->pPreviousElement->pNextElement = pCurrenElement->pNextElement;
 						pCurrenElement->pNextElement->pPreviousElement = pCurrenElement->pPreviousElement;
@@ -155,7 +147,6 @@ namespace common {
 		count_--;
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class T>
 	bool List<T>::contains(T const& element) {
 		if (count_ > 0) {
@@ -172,4 +163,3 @@ namespace common {
 		return false;
 	}
 }
-

@@ -6,12 +6,11 @@
 Renderer::Renderer() {
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+
 Renderer::~Renderer() {
 	delete consoleRect_;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 void Renderer::initialize() {
 	if (isInitialized_) return;
 
@@ -31,11 +30,8 @@ void Renderer::initialize() {
 	isInitialized_ = true;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 void Renderer::setWindowSize(short x, short y) {
-
 	// TODO: All the things
-
 
 	CONSOLE_FONT_INFOEX fontInfo;
 	CONSOLE_CURSOR_INFO cursorInfo;
@@ -48,23 +44,21 @@ void Renderer::setWindowSize(short x, short y) {
 	GetCurrentConsoleFontEx(handle_, false, &fontInfo);
 	GetConsoleCursorInfo(handle_, &cursorInfo);
 
-
 	cursorInfo.bVisible = false;
 
-	windowRect_.Bottom = y/fontInfo.dwFontSize.Y;
+	windowRect_.Bottom = y / fontInfo.dwFontSize.Y;
 	windowRect_.Left = 0;
-	windowRect_.Right = x/fontInfo.dwFontSize.X;
+	windowRect_.Right = x / fontInfo.dwFontSize.X;
 	windowRect_.Top = 0;
 
-
-	screenBufferInfo.dwSize.X= windowRect_.Right + 1;
+	screenBufferInfo.dwSize.X = windowRect_.Right + 1;
 	screenBufferInfo.dwSize.Y = windowRect_.Bottom + 1;
 
 	SetConsoleScreenBufferInfoEx(handle_, &screenBufferInfo);
 	SetConsoleCursorInfo(handle_, &cursorInfo);
 
 	SetConsoleWindowInfo(handle_, true, &windowRect_);
-	
+
 	/*
 	COORD newScreenBufferDimensions;
 
@@ -81,46 +75,36 @@ void Renderer::setWindowSize(short x, short y) {
 	SetWindowLong(windowHandle, GWL_EXSTYLE, lExStyle);
 
 	//SetWindowPos(windowHandle, HWND_TOP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), SWP_FRAMECHANGED| SWP_SHOWWINDOW);
-	
-	
+
 	*/
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 void Renderer::setWindowTitle(string windowTitle) {
 	Utils::checkStatus(SetConsoleTitle(windowTitle.c_str()),
-	                    "WINAPI SetConsoleTitle() failed!");
+		"WINAPI SetConsoleTitle() failed!");
 
 	windowTitle_ = windowTitle;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 void Renderer::updateBufferInfo() {
 	// Todo
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 void Renderer::updateBufferSize() const {
 	// Todo
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 void Renderer::draw(GameTime* game_time) const {
 	// Todo
 }
-
-/*-----------------------------------------------------------------------------------------------*/
 
 string Renderer::title() const {
 	return windowTitle_;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
 void Renderer::toggleFullscreeen() {
 	if (isFullscreen) {
-
 	}
 
 	updateBufferSize();
 }
-

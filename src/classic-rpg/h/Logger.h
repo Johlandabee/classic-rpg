@@ -6,25 +6,26 @@ using namespace std;
 class Logger {
 public:
 	enum LogLevel {
-		LogLevelVerbose,
-		LogLevelWarning,
-		LogLevelInfo,
-		LogLevelError,
-		LogLevelNone
+		LogLevelNone = 0,
+		LogLevelError = 1,
+		LogLevelInfo = 2,
+		LogLevelWarning = 3,
+		LogLevelVerbose = 4
 	};
 
 	enum MessagePrefix {
-		MsgPrfxWarning,
+		MsgPrfxError,
 		MsgPrfxInfo,
-		MsgPrfxError
+		MsgPrfxWarning
 	};
 
 	void log(string message, MessagePrefix messagePrefix = MsgPrfxInfo, int status = 0) const;
-	static Logger* instance(string fileName = "engine.log", LogLevel log_level = LogLevelNone);
+	static Logger* instance(string fileName = "engine.log", LogLevel logLevel = LogLevelNone);
 
 private:
-	static Logger* pInstance_;
-	LogLevel logLevel_;
+	static Logger* pInstance;
+	LogLevel logLevel;
+	string lastMessage;
 
 	Logger(LogLevel log_level, string fileName);
 	~Logger();
@@ -34,6 +35,5 @@ private:
 	static string getTime();
 	static string getPrefixStr(Logger::MessagePrefix messagePrefix);
 
-	string logFile_;
+	string logFile;
 };
-

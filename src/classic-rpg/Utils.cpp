@@ -2,7 +2,6 @@
 #include "h/Logger.h"
 #include <windows.h>
 
-
 void Utils::checkStatus(int status, string errorMessage, bool nuke) {
 	if (status == 0) {
 		status = GetLastError();
@@ -13,4 +12,3 @@ void Utils::checkStatus(int status, string errorMessage, bool nuke) {
 		}
 	}
 }
-

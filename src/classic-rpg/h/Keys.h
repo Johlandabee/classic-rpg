@@ -171,7 +171,7 @@
 	GAME_OEM_SPECIFIC_7 = 0xE4, //OEM specific
 	GAME_PROCESSKEY = 0xE5, //IME PROCESS key
 	GAME_OEM_SPECIFIC_8 = 0xE6, //OEM specific
-	GAME_PACKET = 0xE7, //Used to pass Unicode characters as if they were keystrokes. 
+	GAME_PACKET = 0xE7, //Used to pass Unicode characters as if they were keystrokes.
 						//The VK_PACKET key is the low word of a 32-bit Virtual Key value
 						//used for non-keyboard input methods.
 						//For more information, see Remark in KEYBDINPUT, SendInput, WM_KEYDOWN, and WM_KEYUP

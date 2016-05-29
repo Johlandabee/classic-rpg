@@ -9,16 +9,16 @@ class Game :
 public:
 	Game();
 	~Game();
-private:
-	Config config_ = Config("game.ini");
 
-	bool showPerformanceInfo_;
-	bool perfTitle = false; // Todo: Proper name and init...
-	string title_;
-	Input input_;
+private:
+	Config config = Config("game.ini");
+	Input input;
+	string title;
+
+	bool showPerformanceInfo;
 
 	void initialize() override;
+	void loadConfig();
 	void update(GameTime* gameTime) override;
 	void draw(GameTime* gameTime) override;
 };
-

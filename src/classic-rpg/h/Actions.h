@@ -1,6 +1,11 @@
 ﻿enum Actions {
+	EngineShutDown,
+
 	PlayerMoveUp,
 	PlayerMoveDown,
 	PlayerMoveLeft,
-	PlayerMoveRight
+	PlayerMoveRight,
+
+	PlayerInteract
+
 };

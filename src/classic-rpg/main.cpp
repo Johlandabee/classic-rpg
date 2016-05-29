@@ -1,23 +1,27 @@
 #include "h/Logger.h"
 #include "h/Game.h"
 #include "h/Config.h"
+#include <sstream>
 
 int main(int argc, char* argv[], char* envp[]) {
+	auto config = Config("base.ini");
+	auto logFile = config.getStringValue("sLogFile", "engine.log");
 
-	auto pConfig = Config("base.ini");
-	auto logFile = pConfig.getStringValue("sLogFile", "engine.log");
-	
-	auto pLogger = Logger::instance(logFile, Logger::LogLevelVerbose);
-	
-	pLogger->log("Firing the oven...", Logger::MsgPrfxInfo);
+	short logLevel = config.getIntValue("iLogLevel", 0);
+
+	Logger::instance(logFile, static_cast<Logger::LogLevel>(logLevel));
+	Logger::instance()->log("Firing the oven...", Logger::MsgPrfxInfo);
 
 	try {
 		auto game = Game();
 		game.run();
-	} catch (exception e) {
-		pLogger->log("An error occurred withing the Game() instance", Logger::MsgPrfxError);
+	}
+	catch (exception e) {
+		auto ss = stringstream();
+		ss << "An error occurred within the game instance: " << e.what();
+
+		Logger::instance()->log(ss.str(), Logger::MsgPrfxError);
 	}
 
 	return 0;
 }
-

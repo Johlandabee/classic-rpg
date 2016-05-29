@@ -2,82 +2,82 @@
 #include <thread>
 
 GameTime::GameTime(bool const& isFixedFps, double const& desiredFps) {
-	isFixedFps_ = isFixedFps;
-	desiredFps_ = desiredFps;
+	this->isFixedFps = isFixedFps;
+	this->desiredFps = desiredFps;
 
-	frameCount_ = 0;
+	frameCount = 0;
 
-	dMinFrameTime_ = duration<double>(1. / desiredFps_);
+	dMinFrameTime = duration<double>(1. / desiredFps);
 
-	tframeBegin_ = system_clock::now();
-	tframeEnd_ = system_clock::now();
+	tframeBegin = system_clock::now();
+	tframeEnd = system_clock::now();
 
-	tStart_ = system_clock::now();
+	tStart = system_clock::now();
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+
 GameTime::~GameTime() {
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+
 void GameTime::begin() {
-	tframeBegin_ = system_clock::now();
+	tframeBegin = system_clock::now();
 }
 
-/*-----------------------------------------------------------------------------------------------*/
-void GameTime::end() {
-	tframeEnd_ = system_clock::now();
-	dFrameTime_ = elapsed();
 
-	if(isFixedFps_) {
+void GameTime::end() {
+	tframeEnd = system_clock::now();
+	dFrameTime = elapsed();
+
+	if (isFixedFps) {
 		wait();
 	}
 
-	if(frameCount_ >= LONG_MAX - 1) {
-		frameCount_ = 0;
+	if (frameCount >= LONG_MAX - 1) {
+		frameCount = 0;
 	}
 
-	frameCount_++;
+	frameCount++;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+
 void GameTime::wait() const {
-	if(dFrameTime_ < dMinFrameTime_) {
-		this_thread::sleep_for(dMinFrameTime_ - dFrameTime_);
+	if (dFrameTime < dMinFrameTime) {
+		this_thread::sleep_for(dMinFrameTime - dFrameTime);
 	}
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+
 double GameTime::fps() const
-{	
+{
 	auto s = duration_cast<seconds>(runTime()).count();
-	auto f = frameCount_;
+	auto f = frameCount;
 
 	double fps = 0;
 
-	if(f > 0 && s > 0) {
+	if (f > 0 && s > 0) {
 		fps = f / s;
 	}
 
 	return fps;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+
 duration<double> GameTime::frameTime() const {
-	return dFrameTime_;
+	return dFrameTime;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+
 double GameTime::frameTimeNs() const {
-	return duration_cast<nanoseconds>(dFrameTime_).count();
+	return duration_cast<nanoseconds>(dFrameTime).count();
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+
 duration<double> GameTime::elapsed() const {
-	return (system_clock::now() - tframeBegin_);
+	return (system_clock::now() - tframeBegin);
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+
 duration<double> GameTime::runTime() const {
-	return (system_clock::now() - tStart_);
+	return (system_clock::now() - tStart);
 }

@@ -5,13 +5,14 @@ using namespace std;
 using namespace common;
 
 class Config {
-	Dictionary<string, string>* dictionary_ = nullptr;
-	string fileName_;
+	Dictionary<string, string>* props = nullptr;
+	string fileName;
 
 	void loadFile() const;
 
 public:
 	explicit Config(string fileName);
+	Config();
 	~Config();
 
 	string getStringValue(string const& key, string defaultValue = "") const;
@@ -19,4 +20,3 @@ public:
 	double getDoubleValue(string const& key, double defaultValue) const;
 	bool getBooleanValue(string const& key, bool defaultValue) const;
 };
-

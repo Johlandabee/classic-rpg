@@ -4,4 +4,3 @@ public:
 	Level();
 	~Level();
 };
-

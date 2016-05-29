@@ -2,38 +2,34 @@
 
 // ReSharper disable once CppPossiblyUninitializedMember
 GameLoop::GameLoop() {
-	running_ = true;
-
+	isRunning = true;
 
 	/* Needs to be initialized before Game()! */
-	pRenderer = new Renderer();
-
+	renderer = new Renderer();
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+
 GameLoop::~GameLoop() {
-	delete pGameTime;
-	delete pRenderer;
+	delete gameTime;
+	delete renderer;
 }
 
-/*-----------------------------------------------------------------------------------------------*/
+
 void GameLoop::initialize() {
-	pGameTime = new GameTime(isFixedFrameRate, desiredFrameRate);
-	pRenderer->initialize();
+	gameTime = new GameTime(isFixedFrameRate, desiredFrameRate);
+	renderer->initialize();
 
 	/*Todo*/
 }
 
-/*-----------------------------------------------------------------------------------------------*/
-void GameLoop::run() {
 
-	while (running_) {
-		pGameTime->begin();
-		
-		this->update(pGameTime);
-		this->draw(pGameTime);
-		
-		pGameTime->end();
+void GameLoop::run() {
+	while (isRunning) {
+		gameTime->begin();
+
+		this->update(gameTime);
+		this->draw(gameTime);
+
+		gameTime->end();
 	}
 }
-

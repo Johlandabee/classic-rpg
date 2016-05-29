@@ -14,5 +14,5 @@ public:
 	void unbind(Actions action);
 
 private:
-	common::Dictionary<Actions, Keys> bindings_;
+	common::Dictionary<Actions, Keys> bindings;
 };

@@ -1,24 +1,21 @@
 #include "h/Input.h"
 #include <Windows.h>
 #include "h/Logger.h"
+#include <sstream>
 
-Input::Input()
-{
-	bindings_ = common::Dictionary<Actions, Keys>();
+Input::Input() {
+	bindings = common::Dictionary<Actions, Keys>();
 }
 
-
-Input::~Input()
-{
+Input::~Input() {
 }
 
 bool Input::isAction(Actions action) {
-	if(!bindings_.containsKey(action)) {
-		Logger::instance()->log("Action {ACTION_NAME} is not bound to any key", Logger::MsgPrfxWarning);
+	if (!bindings.containsKey(action)) {
 		return false;
 	}
 
-	if(GetKeyState(bindings_[action]) & 0x8000) {
+	if (GetKeyState(bindings[action]) & 0x8000) {
 		return true;
 	}
 
@@ -26,14 +23,16 @@ bool Input::isAction(Actions action) {
 }
 
 void Input::bind(Actions action, Keys key) {
-	if(bindings_.containsKey(action)) {
-		Logger::instance()->log("Action {ACTION_NAME} is alredy bound to a key", Logger::MsgPrfxWarning);
+	if (bindings.containsKey(action)) {
+		auto ss = stringstream();
+		ss << "Action " << action << " is alredy bound to a key";
+		Logger::instance()->log(ss.str(), Logger::MsgPrfxWarning);
 		return;
 	}
 
-	bindings_.add(action, key);
+	bindings.add(action, key);
 }
 
 void Input::unbind(Actions action) {
-	bindings_.remove(action);
+	bindings.remove(action);
 }

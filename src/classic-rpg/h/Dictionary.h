@@ -1,7 +1,6 @@
 #pragma once
 #include <stdexcept>
 
-
 using namespace std;
 
 namespace common {
@@ -23,15 +22,14 @@ namespace common {
 		DictionaryElement<TKey, TValue>* pNextElement = nullptr;
 		DictionaryElement<TKey, TValue>* pPreviousElement = nullptr;
 	};
-
-	/*-----------------------------------------------------------------------------------------------*/
+	
 	template <class TKey, class TValue>
 	class Dictionary {
 		DictionaryElement<TKey, TValue>* pFirstElement = nullptr;
 		DictionaryElement<TKey, TValue>* pLastElement = nullptr;
 		DictionaryElement<TKey, TValue>* pCurrentElement = nullptr;
 
-		int count_ = 0;
+		int count = 0;
 
 	public:
 		Dictionary();
@@ -47,16 +45,14 @@ namespace common {
 		bool containsValue(TValue const& value);
 	};
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	Dictionary<TKey, TValue>::Dictionary() {
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	Dictionary<TKey, TValue>::~Dictionary() {
-		delete pLastElement ,
-			pCurrentElement ,
+		delete pLastElement,
+			pCurrentElement,
 			pFirstElement;
 
 		pLastElement = nullptr;
@@ -64,16 +60,14 @@ namespace common {
 		pFirstElement = nullptr;
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	TValue Dictionary<TKey, TValue>::operator[](const TKey key) {
-
 		pCurrentElement = pFirstElement;
 
 		if (pCurrentElement == nullptr)
 			throw logic_error("Dictionary is empty");
 
-		for (auto i = 0; i < count_ + 1; i++) {
+		for (auto i = 0; i < count + 1; i++) {
 			if (pCurrentElement->key == key) {
 				return pCurrentElement->value;
 			}
@@ -84,13 +78,12 @@ namespace common {
 		throw logic_error("Key not present");
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	void Dictionary<TKey, TValue>::clear() {
-		if (count_ > 0) {
+		if (count > 0) {
 			pCurrentElement = pFirstElement;
 
-			for (auto i = 0; i < count_; i++) {
+			for (auto i = 0; i < count; i++) {
 				if (pCurrentElement->pNextElement) {
 					pCurrentElement = pCurrentElement->pNextElement;
 					delete pCurrentElement->pPreviousElement;
@@ -104,16 +97,14 @@ namespace common {
 			pCurrentElement = nullptr;
 			pLastElement = nullptr;
 
-			count_ = 0;
+			count = 0;
 		}
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	void Dictionary<TKey, TValue>::add(TKey const& key, TValue const& value) {
 		if (containsKey(key))
 			throw invalid_argument("Key already in use");
-
 
 		if (pFirstElement == nullptr) {
 			pFirstElement = new DictionaryElement<TKey, TValue>(key, value);
@@ -125,18 +116,16 @@ namespace common {
 			pLastElement = pLastElement->pNextElement;
 		}
 
-		count_++;
+		count++;
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	void Dictionary<TKey, TValue>::remove(TKey const& key) {
-		if (count_ > 0) {
+		if (count > 0) {
 			pCurrentElement = pFirstElement;
 
-			for (auto i = 1; i < count_; i++) {
+			for (auto i = 1; i < count; i++) {
 				if (pCurrentElement->key == key) {
-
 					if (pCurrentElement->pPreviousElement && pCurrentElement->pNextElement) {
 						pCurrentElement->pPreviousElement->pNextElement = pCurrentElement->pNextElement;
 						pCurrentElement->pNextElement->pPreviousElement = pCurrentElement->pPreviousElement;
@@ -162,17 +151,15 @@ namespace common {
 			}
 		}
 
-		count_--;
+		count--;
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	bool Dictionary<TKey, TValue>::containsKey(TKey const& key) {
-
-		if (count_ > 0) {
+		if (count > 0) {
 			pCurrentElement = pFirstElement;
 
-			for (auto i = 0; i < count_; i++) {
+			for (auto i = 0; i < count; i++) {
 				if (pCurrentElement->key == key) {
 					pCurrentElement = nullptr;
 					return true;
@@ -185,14 +172,12 @@ namespace common {
 		return false;
 	}
 
-	/*-----------------------------------------------------------------------------------------------*/
 	template <class TKey, class TValue>
 	bool Dictionary<TKey, TValue>::containsValue(TValue const& value) {
-
-		if (count_ > 0) {
+		if (count > 0) {
 			pCurrentElement = pFirstElement;
 
-			for (auto i = 0; i < count_; i++) {
+			for (auto i = 0; i < count; i++) {
 				if (pCurrentElement->value == value) {
 					return true;
 				}
@@ -202,6 +187,4 @@ namespace common {
 
 		return false;
 	}
-
 }
-

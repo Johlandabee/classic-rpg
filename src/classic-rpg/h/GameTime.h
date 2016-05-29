@@ -22,11 +22,10 @@ public:
 private:
 	void wait() const;
 
-	system_clock::time_point tframeBegin_, tframeEnd_, tStart_;
-	duration<double> dFrameTime_, dMinFrameTime_;
+	system_clock::time_point tframeBegin, tframeEnd, tStart;
+	duration<double> dFrameTime, dMinFrameTime;
 
-	bool isFixedFps_;
-	double desiredFps_;
-	long frameCount_;
+	bool isFixedFps;
+	double desiredFps;
+	long frameCount;
 };
-
