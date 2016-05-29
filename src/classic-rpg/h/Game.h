@@ -2,6 +2,7 @@
 #include "GameLoop.h"
 #include "GameTime.h"
 #include "Config.h"
+#include "Input.h"
 
 class Game :
 	public GameLoop {
@@ -13,6 +14,8 @@ private:
 
 	bool showPerformanceInfo_;
 	bool perfTitle = false; // Todo: Proper name and init...
+	string title_;
+	Input input_;
 
 	void initialize() override;
 	void update(GameTime* gameTime) override;

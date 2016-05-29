@@ -121,6 +121,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameTime.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
@@ -129,6 +130,7 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="h\Actions.h" />
     <ClInclude Include="h\Config.h" />
     <ClInclude Include="h\Entity.h" />
     <ClInclude Include="h\Game.h" />
@@ -141,6 +143,8 @@
     <ClInclude Include="h\Utils.h" />
     <ClInclude Include="h\Dictionary.h" />
     <ClInclude Include="h\List.h" />
+    <ClInclude Include="h\Input.h" />
+    <ClInclude Include="h\Keys.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

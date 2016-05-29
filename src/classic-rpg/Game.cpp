@@ -2,6 +2,7 @@
 #include "h/Game.h"
 #include "h/Config.h"
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ void Game::initialize() {
 	// Loading config file and set values
 	// Todo: eventually move things into base.ini
 	pRenderer->setWindowTitle(config_.getStringValue("sWindowTitle", "Default"));
+	title_ = pRenderer->title();
 	pRenderer->isFullscreen = config_.getBooleanValue("bFullscreen", false);
 
 	auto x = config_.getIntValue("iScreenWidth", 640);
@@ -31,6 +33,10 @@ void Game::initialize() {
 
 	showPerformanceInfo_ = config_.getBooleanValue("bShowPerformanceInfo", false);
 
+	input_ = Input();
+
+	input_.bind(PlayerMoveDown, GAME_S);
+
 	GameLoop::initialize();
 }
 
@@ -40,13 +46,15 @@ void Game::update(GameTime* gameTime) {
 	// Update performance information if enabled (Window title)
 	if (showPerformanceInfo_) {
 		auto ss = stringstream();
-		if(!perfTitle) {
-			ss << pRenderer->title();
-			perfTitle = true;
-		}
+		ss << title_;
 		ss << " | FPS: " << gameTime->fps()
 			<< " FrameTime: " << gameTime->frameTimeNs() << "ns";
 		pRenderer->setWindowTitle(ss.str());
+	}
+
+	// Test key binding
+	if(input_.isAction(PlayerMoveDown)) {
+		cout << "Player moving down" << endl;
 	}
 }
 
