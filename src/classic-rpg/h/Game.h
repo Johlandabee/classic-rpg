@@ -7,11 +7,11 @@
 class Game :
 	public GameLoop {
 public:
-	Game();
+	explicit Game(const Config& config);
 	~Game();
 
 private:
-	Config config = Config("game.ini");
+	Config config;
 	Input input;
 	string title;
 

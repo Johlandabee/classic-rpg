@@ -148,7 +148,6 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="config\base.ini" />
     <None Include="config\game.ini" />
   </ItemGroup>
   <ItemGroup>

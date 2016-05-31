@@ -104,7 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="config\game.ini" />
-    <None Include="config\base.ini" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="sword.ico">

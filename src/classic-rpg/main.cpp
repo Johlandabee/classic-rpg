@@ -4,7 +4,7 @@
 #include <sstream>
 
 int main(int argc, char* argv[], char* envp[]) {
-	auto config = Config("base.ini");
+	auto config = Config("game.ini");
 	auto logFile = config.getStringValue("sLogFile", "engine.log");
 
 	short logLevel = config.getIntValue("iLogLevel", 0);
@@ -13,7 +13,7 @@ int main(int argc, char* argv[], char* envp[]) {
 	Logger::instance()->log("Firing the oven...", Logger::MsgPrfxInfo);
 
 	try {
-		auto game = Game();
+		auto game = Game(config);
 		game.run();
 	}
 	catch (exception e) {

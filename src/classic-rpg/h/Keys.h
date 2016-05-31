@@ -184,5 +184,6 @@
 	GAME_ZOOM = 0xFB, //Zoom key
 	GAME_NONAME = 0xFC, //Reserved
 	GAME_PA1 = 0xFD, //PA1 key
-	GAME_OEM_CLEAR = 0xFE //Clear key
+	GAME_OEM_CLEAR = 0xFE, //Clear key
+	NOT_ASSINGED
 };

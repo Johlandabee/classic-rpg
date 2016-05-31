@@ -7,7 +7,8 @@
 
 using namespace std;
 
-Game::Game() {
+Game::Game(const Config& config) {
+	this->config = config;
 	Game::initialize();
 }
 
@@ -15,7 +16,6 @@ Game::~Game() {
 }
 
 void Game::initialize() {
-
 	loadConfig();
 	title = renderer->title();
 	
@@ -35,32 +35,18 @@ void Game::loadConfig() {
 	showPerformanceInfo = config.getBooleanValue("bShowPerformanceInfo", false);
 
 	// Keybindings
-	short key = config.getIntValue("EngineShutDown", 27);
-	input.bind(EngineShutDown, static_cast<Keys>(key));
-
-	key = config.getIntValue("PlayerMoveUp", 87);
-	input.bind(PlayerMoveUp, static_cast<Keys>(key));
-
-	key = config.getIntValue("PlayerMoveDown", 83);
-	input.bind(PlayerMoveDown, static_cast<Keys>(key));
-
-	key = config.getIntValue("PlayerMoveLeft", 65);
-	input.bind(PlayerMoveLeft, static_cast<Keys>(key));
-
-	key = config.getIntValue("PlayerMoveUp", 68);
-	input.bind(PlayerMoveRight, static_cast<Keys>(key));
-
-	key = config.getIntValue("PlayerInteract", 32);
-	input.bind(PlayerInteract, static_cast<Keys>(key));
+	input.loadBindings(config);
 }
 
 void Game::update(GameTime* gameTime) {
+
 	// Update performance information if enabled (Window title)
 	if (showPerformanceInfo) {
 		auto ss = stringstream();
 		ss << title;
 		ss << " | FPS: " << gameTime->fps()
-			<< " FrameTime: " << gameTime->frameTimeNs() << "ns";
+		   << " FrameTime: " << gameTime->frameTimeNs() << "ns";
+
 		renderer->setWindowTitle(ss.str());
 	}
 
@@ -68,6 +54,14 @@ void Game::update(GameTime* gameTime) {
 	if (input.isAction(EngineShutDown)) {
 		Logger::instance()->log("Shutting down...", Logger::MsgPrfxInfo);
 		exit(0);
+	}
+
+	// Toggle performance info
+	if(input.isAction(EngineTogglePerfInfo)) {
+			if (showPerformanceInfo) {
+				renderer->setWindowTitle(title);
+			}
+			showPerformanceInfo = !showPerformanceInfo;
 	}
 }
 
