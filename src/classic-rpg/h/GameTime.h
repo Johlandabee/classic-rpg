@@ -11,21 +11,21 @@ public:
 
 	void begin();
 	void end();
-	double fps() const;
-
+	
 	duration<double> frameTime() const;
 	duration<double> elapsed() const;
-	duration<double> runTime() const;
+	duration<double> elapsedSinceBegin() const;
 
-	double frameTimeNs() const;
+	double fps() const;
+	double internalFrameTimeNs() const;
+	double completeFrameTimeMs() const;
 
 private:
 	void wait() const;
 
-	system_clock::time_point tframeBegin, tframeEnd, tStart;
-	duration<double> dFrameTime, dMinFrameTime;
+	system_clock::time_point frameBegin, start;
+	duration<double> internalFrameTime, minFrameTime, completeFrameTime;
 
 	bool isFixedFps;
 	double desiredFps;
-	long frameCount;
 };

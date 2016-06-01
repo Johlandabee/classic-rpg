@@ -5,79 +5,59 @@ GameTime::GameTime(bool const& isFixedFps, double const& desiredFps) {
 	this->isFixedFps = isFixedFps;
 	this->desiredFps = desiredFps;
 
-	frameCount = 0;
+	minFrameTime = duration<double>(1. / desiredFps);
+	frameBegin = system_clock::now();
 
-	dMinFrameTime = duration<double>(1. / desiredFps);
-
-	tframeBegin = system_clock::now();
-	tframeEnd = system_clock::now();
-
-	tStart = system_clock::now();
+	start = system_clock::now();
 }
-
 
 GameTime::~GameTime() {
 }
 
 
 void GameTime::begin() {
-	tframeBegin = system_clock::now();
+	frameBegin = system_clock::now();
 }
 
-
 void GameTime::end() {
-	tframeEnd = system_clock::now();
-	dFrameTime = elapsed();
+	internalFrameTime = elapsed();
 
 	if (isFixedFps) {
 		wait();
 	}
 
-	if (frameCount >= LONG_MAX - 1) {
-		frameCount = 0;
-	}
-
-	frameCount++;
+	completeFrameTime = elapsed();
 }
-
 
 void GameTime::wait() const {
-	if (dFrameTime < dMinFrameTime) {
-		this_thread::sleep_for(dMinFrameTime - dFrameTime);
+	if (internalFrameTime < minFrameTime) {
+		this_thread::sleep_for(minFrameTime - internalFrameTime);
 	}
 }
 
-
-double GameTime::fps() const
-{
-	auto s = duration_cast<seconds>(runTime()).count();
-	auto f = frameCount;
-
-	double fps = 0;
-
-	if (f > 0 && s > 0) {
-		fps = f / s;
-	}
-
-	return fps;
+double GameTime::fps() const {
+	return 1 / completeFrameTime.count();
 }
 
 
 duration<double> GameTime::frameTime() const {
-	return dFrameTime;
+	return internalFrameTime;
 }
 
 
-double GameTime::frameTimeNs() const {
-	return duration_cast<nanoseconds>(dFrameTime).count();
+double GameTime::internalFrameTimeNs() const {
+	return duration_cast<nanoseconds>(internalFrameTime).count();
 }
 
+double GameTime::completeFrameTimeMs() const {
+	return duration_cast<milliseconds>(completeFrameTime).count();
+}
 
 duration<double> GameTime::elapsed() const {
-	return (system_clock::now() - tframeBegin);
+	return (system_clock::now() - frameBegin);
 }
 
 
-duration<double> GameTime::runTime() const {
-	return (system_clock::now() - tStart);
+duration<double> GameTime::elapsedSinceBegin() const {
+	return (system_clock::now() - start);
 }

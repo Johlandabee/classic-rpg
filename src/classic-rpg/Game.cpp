@@ -40,16 +40,7 @@ void Game::loadConfig() {
 
 void Game::update(GameTime* gameTime) {
 
-	// Update performance information if enabled (Window title)
-	if (showPerformanceInfo) {
-		auto ss = stringstream();
-		ss << title;
-		ss << " | FPS: " << gameTime->fps()
-		   << " FrameTime: " << gameTime->frameTimeNs() << "ns";
-
-		renderer->setWindowTitle(ss.str());
-	}
-
+	// ### Input ###
 	// Exit on escape
 	if (input.isAction(EngineShutDown)) {
 		Logger::instance()->log("Shutting down...", Logger::MsgPrfxInfo);
@@ -57,11 +48,24 @@ void Game::update(GameTime* gameTime) {
 	}
 
 	// Toggle performance info
-	if(input.isAction(EngineTogglePerfInfo)) {
-			if (showPerformanceInfo) {
-				renderer->setWindowTitle(title);
-			}
-			showPerformanceInfo = !showPerformanceInfo;
+	if (input.isAction(EngineTogglePerfInfo)) {
+		if (showPerformanceInfo) {
+			renderer->setWindowTitle(title);
+		}
+		showPerformanceInfo = !showPerformanceInfo;
+	}
+
+	// ### Logic ###
+	// Update performance information if enabled (Window title)
+	if (showPerformanceInfo) {
+		auto ss = stringstream();
+
+		ss << title;
+		ss << " | FPS: " << gameTime->fps()
+			<< " | FT: " << gameTime->internalFrameTimeNs() << "ns"
+			<< " | CFT: " << gameTime->completeFrameTimeMs() << "ms";
+
+		renderer->setWindowTitle(ss.str());
 	}
 }
 
