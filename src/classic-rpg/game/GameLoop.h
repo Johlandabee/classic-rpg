@@ -1,6 +1,7 @@
 #pragma once
 #include "GameTime.h"
-#include "Renderer.h"
+#include "Console.h"
+#include "Input.h"
 
 class GameLoop {
 public:
@@ -9,14 +10,16 @@ public:
 	void run();
 
 protected:
-	virtual void initialize();
-	Renderer* renderer;
-
 	bool isFixedFrameRate = true;
-	double desiredFrameRate = 59.0;
+	Console* console;
+	double desiredFrameRate = 60.0;
+	Input input;
+	virtual void initialize();
 
 private:
 	GameTime* gameTime;
+	
+
 	bool isRunning;
 
 	virtual void update(GameTime* game_time) abstract;

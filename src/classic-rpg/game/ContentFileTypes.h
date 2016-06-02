@@ -1,8 +1,8 @@
 #pragma once
 
 enum ContentFileTypes {
+	ItemContetn = 0x03,
 	LevelContent = 0x00,
-	UiContent = 0x01,
 	TranslationContent = 0x02,
-	ItemContetn = 0x03
+	UiContent = 0x01
 };

@@ -1,8 +1,7 @@
 #pragma once
+#include "Config.h"
 #include "GameLoop.h"
 #include "GameTime.h"
-#include "Config.h"
-#include "Input.h"
 
 class Game :
 	public GameLoop {
@@ -11,14 +10,13 @@ public:
 	~Game();
 
 private:
-	Config config;
-	Input input;
-	string title;
-
 	bool showPerformanceInfo;
 
+	Config config;
+	string title;
+
+	void draw(GameTime* gameTime) override;
 	void initialize() override;
 	void loadConfig();
 	void update(GameTime* gameTime) override;
-	void draw(GameTime* gameTime) override;
 };

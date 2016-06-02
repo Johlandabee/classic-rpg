@@ -1,8 +1,8 @@
 #include "Config.h"
-#include <fstream>
-#include <string>
 #include <algorithm>
+#include <fstream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 using namespace common;
@@ -11,9 +11,6 @@ Config::Config(string fileName) {
 	this->fileName = fileName;
 	this->props = new Dictionary<string, string>;
 	loadFile();
-}
-
-Config::Config() {
 }
 
 Config::~Config() {

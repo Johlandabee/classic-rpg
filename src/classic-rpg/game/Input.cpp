@@ -1,7 +1,7 @@
 #include "Input.h"
 #include "Logger.h"
+#include <iostream>
 #include <sstream>
-#include <windows.h>
 
 Input::Input() {
 	bindings = Dictionary<Actions, Binding*>();
@@ -22,6 +22,10 @@ bool Input::isAction(Actions action) {
 	return false;
 }
 
+bool Input::isFocus() const {
+	return focus;
+}
+
 void Input::bind(Actions action, Keys key, unsigned const int timeout) {
 	if (bindings.containsKey(action)) {
 		auto ss = stringstream();
@@ -40,9 +44,39 @@ void Input::unbind(Actions action) {
 void Input::loadBindings(const Config& config) {
 	bind(EngineShutDown, static_cast<Keys>(config.getIntValue("EngineShutDown", 27)));
 	bind(EngineTogglePerfInfo, static_cast<Keys>(config.getIntValue("EngineTogglePerfInfo", 112)), 150);
-	bind(PlayerMoveUp, static_cast<Keys>(config.getIntValue("PlayerMoveUp", 87)));
+	bind(PlayerInteract, static_cast<Keys>(config.getIntValue("PlayerInteract", 32)));
 	bind(PlayerMoveDown, static_cast<Keys>(config.getIntValue("PlayerMoveDown", 83)));
 	bind(PlayerMoveLeft, static_cast<Keys>(config.getIntValue("PlayerMoveLeft", 65)));
 	bind(PlayerMoveRight, static_cast<Keys>(config.getIntValue("PlayerMoveUp", 68)));
-	bind(PlayerInteract, static_cast<Keys>(config.getIntValue("PlayerInteract", 32)));
+	bind(PlayerMoveUp, static_cast<Keys>(config.getIntValue("PlayerMoveUp", 87)));
+}
+
+void Input::processEvents() {
+	read = 0;
+	events = 0;
+
+	GetNumberOfConsoleInputEvents(this->handle, &events);
+	auto process = events < EVENT_THRESHOLD ? events : EVENT_THRESHOLD;
+
+	if (events > 0 && PeekConsoleInput(handle, input, process, &read)) {
+		for (unsigned short i = 0; i < process; i++) {
+			switch (input[i].EventType) {
+				case KEY_EVENT:
+					// Todo
+					break;
+				case MOUSE_EVENT:
+					// Todo
+					break;
+				case FOCUS_EVENT:
+					focus = input[i].Event.FocusEvent.bSetFocus;
+					break;
+			}
+		}
+		if (read < events) {
+			auto ss = stringstream();
+			ss << "INPUT Discarding input events (" << events - read << ")";
+			Logger::instance()->log(ss.str(), Logger::MessagePrefix::MsgPrfxWarning);
+		}
+		FlushConsoleInputBuffer(handle);
+	}
 }

@@ -23,17 +23,15 @@ public:
 	static Logger* instance(string fileName = "engine.log", LogLevel logLevel = LogLevelNone);
 
 private:
-	static Logger* pInstance;
-	LogLevel logLevel;
-	string lastMessage;
-
-	Logger(LogLevel log_level, string fileName);
-	~Logger();
-
 	Logger(const Logger&);
+	Logger(LogLevel log_level, string fileName);
 
+	LogLevel logLevel;
+
+	static Logger* pInstance;
+	static string getPrefixStr(MessagePrefix messagePrefix);
 	static string getTime();
-	static string getPrefixStr(Logger::MessagePrefix messagePrefix);
 
+	string lastMessage;
 	string logFile;
 };

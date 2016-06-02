@@ -1,23 +1,21 @@
-#include "Renderer.h"
-#include "Utils.h"
+#include "Console.h"
 #include "Logger.h"
+#include "Utils.h"
 
 // ReSharper disable once CppPossiblyUninitializedMember
-Renderer::Renderer() {
+Console::Console() {
 }
 
 
-Renderer::~Renderer() {
-	delete consoleRect_;
+Console::~Console() {
+	delete consoleRect;
 }
 
-void Renderer::initialize() {
-	if (isInitialized_) return;
-
+void Console::initialize() {
 	charBufferSize = 255;
 
 	/////////////// Do not move /////////////
-	screenBufferInfo_.cbSize = charBufferSize;
+	screenBufferInfo.cbSize = charBufferSize;
 	/////////////////////////////////////////
 
 	// Set inital window and buffer size
@@ -26,39 +24,51 @@ void Renderer::initialize() {
 	if (isFullscreen) {
 		toggleFullscreeen();
 	}
-
-	isInitialized_ = true;
 }
 
-void Renderer::setWindowSize(short x, short y) {
+void Console::setFullscreen(const bool& isFullscreen) {
+	this->isFullscreen = isFullscreen;
+}
+
+void Console::setWindowSize(short x, short y) {
 	// TODO: All the things
 
-	CONSOLE_FONT_INFOEX fontInfo;
+/*	CONSOLE_FONT_INFOEX fontInfo;
 	CONSOLE_CURSOR_INFO cursorInfo;
 	CONSOLE_SCREEN_BUFFER_INFOEX screenBufferInfo;
 
 	fontInfo.cbSize = sizeof(fontInfo);
 	screenBufferInfo.cbSize = sizeof(screenBufferInfo);
 
-	GetConsoleScreenBufferInfoEx(handle_, &screenBufferInfo);
-	GetCurrentConsoleFontEx(handle_, false, &fontInfo);
-	GetConsoleCursorInfo(handle_, &cursorInfo);
+	GetConsoleScreenBufferInfoEx(stdHandle, &screenBufferInfo);
+	GetCurrentConsoleFontEx(stdHandle, false, &fontInfo);
+	GetConsoleCursorInfo(stdHandle, &cursorInfo);
 
 	cursorInfo.bVisible = false;
 
-	windowRect_.Bottom = y / fontInfo.dwFontSize.Y;
-	windowRect_.Left = 0;
-	windowRect_.Right = x / fontInfo.dwFontSize.X;
-	windowRect_.Top = 0;
+	windowRect.Bottom = y / fontInfo.dwFontSize.Y;
+	windowRect.Left = 0;
+	windowRect.Right = x / fontInfo.dwFontSize.X;
+	windowRect.Top = 0;
 
-	screenBufferInfo.dwSize.X = windowRect_.Right + 1;
-	screenBufferInfo.dwSize.Y = windowRect_.Bottom + 1;
+	screenBufferInfo.dwSize.X = windowRect.Right + 1;
+	screenBufferInfo.dwSize.Y = windowRect.Bottom + 1;
 
-	SetConsoleScreenBufferInfoEx(handle_, &screenBufferInfo);
-	SetConsoleCursorInfo(handle_, &cursorInfo);
+	SetConsoleScreenBufferInfoEx(stdHandle, &screenBufferInfo);
+	SetConsoleCursorInfo(stdHandle, &cursorInfo);
 
-	SetConsoleWindowInfo(handle_, true, &windowRect_);
+	SetConsoleWindowInfo(stdHandle, true, &windowRect);*/
 
+	DWORD flags = 0;
+	//GetConsoleMode(stdHandle, &flags);
+
+	//flags &= ~ENABLE_MOUSE_INPUT;
+
+	//auto status = SetConsoleMode(stdHandle, flags);
+
+	auto error = GetLastError();
+
+	int i = 1;
 	/*
 	COORD newScreenBufferDimensions;
 
@@ -79,32 +89,33 @@ void Renderer::setWindowSize(short x, short y) {
 	*/
 }
 
-void Renderer::setWindowTitle(string windowTitle) {
+void Console::setWindowTitle(string windowTitle) {
 	Utils::checkStatus(SetConsoleTitle(windowTitle.c_str()),
 		"WINAPI SetConsoleTitle() failed!");
 
 	windowTitle_ = windowTitle;
 }
 
-void Renderer::updateBufferInfo() {
+void Console::updateBufferInfo() {
 	// Todo
 }
 
-void Renderer::updateBufferSize() const {
+void Console::updateBufferSize() const {
 	// Todo
 }
 
-void Renderer::draw(GameTime* game_time) const {
-	// Todo
+void Console::print() {
+	
 }
 
-string Renderer::title() const {
+string Console::getTitle() const {
 	return windowTitle_;
 }
 
-void Renderer::toggleFullscreeen() {
+void Console::toggleFullscreeen() {
 	if (isFullscreen) {
 	}
 
 	updateBufferSize();
 }
+

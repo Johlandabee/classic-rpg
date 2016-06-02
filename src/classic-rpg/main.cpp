@@ -1,6 +1,6 @@
-#include "game/Logger.h"
-#include "game/Game.h"
 #include "game/Config.h"
+#include "game/Game.h"
+#include "game/Logger.h"
 #include <sstream>
 
 int main(int argc, char* argv[], char* envp[]) {

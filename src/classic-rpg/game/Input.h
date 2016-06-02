@@ -1,11 +1,13 @@
 #pragma once
-#include "Dictionary.h"
-#include "Keys.h"
 #include "Actions.h"
+#include "Binding.h"
 #include "Config.h"
+#include "Dictionary.h"
 #include <chrono>
+#include <windows.h>
 
 using namespace chrono;
+using namespace std;
 
 class Input {
 public:
@@ -13,39 +15,19 @@ public:
 	~Input();
 
 	bool isAction(Actions action);
+	bool isFocus() const;
 	void bind(Actions action, Keys key, unsigned const int timeout = 0);
-	void unbind(Actions action);
 	void loadBindings(const Config& config);
+	void processEvents();
+	void unbind(Actions action);
 
 private:
-	// Todo: Extract class
-	class Binding {
-		Keys key;
-		system_clock::time_point lastCall;
-		unsigned int timeout;
+	static const unsigned short EVENT_THRESHOLD = 256;
 
-	public:
-		explicit Binding(Keys key, unsigned const int timeout) {
-			this->key = key;
-			this->timeout = timeout;
-		}
-		~Binding() {
-		}
-
-		Keys getKey() const {
-			return key;
-		}
-
-		bool ready() {
-			if (timeout == 0 || duration_cast<milliseconds>(
-				duration<double>(system_clock::now() - lastCall)).count() >= timeout) {
-				lastCall = system_clock::now();
-				return true;
-			}
-
-			return false;
-		}
-	};
-
+	bool focus = true;
 	Dictionary<Actions, Binding*> bindings;
+	DWORD events = 0;
+	DWORD read = 0;
+	HANDLE handle = GetStdHandle(STD_INPUT_HANDLE);
+	INPUT_RECORD input[EVENT_THRESHOLD];	
 };

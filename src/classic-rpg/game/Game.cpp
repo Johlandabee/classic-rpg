@@ -17,18 +17,18 @@ Game::~Game() {
 
 void Game::initialize() {
 	loadConfig();
-	title = renderer->title();
+	title = console->getTitle();
 	
 	GameLoop::initialize();
 }
 
 void Game::loadConfig() {
-	renderer->setWindowTitle(config.getStringValue("sWindowTitle", "Default"));
-	renderer->isFullscreen = config.getBooleanValue("bFullscreen", false);
+	console->setWindowTitle(config.getStringValue("sWindowTitle", "Default"));
+	console->setFullscreen(config.getBooleanValue("bFullscreen", false));
 
 	auto x = config.getIntValue("iScreenWidth", 640);
 	auto y = config.getIntValue("iScreenHeight", 360);
-	renderer->setWindowSize(x, y);
+	console->setWindowSize(x, y);
 
 	isFixedFrameRate = config.getBooleanValue("bFixedFrameRate", true);
 	desiredFrameRate = config.getDoubleValue("dDesiredFrameRate", 59.0);
@@ -39,7 +39,6 @@ void Game::loadConfig() {
 }
 
 void Game::update(GameTime* gameTime) {
-
 	// ### Input ###
 	// Exit on escape
 	if (input.isAction(EngineShutDown)) {
@@ -50,7 +49,7 @@ void Game::update(GameTime* gameTime) {
 	// Toggle performance info
 	if (input.isAction(EngineTogglePerfInfo)) {
 		if (showPerformanceInfo) {
-			renderer->setWindowTitle(title);
+			console->setWindowTitle(title);
 		}
 		showPerformanceInfo = !showPerformanceInfo;
 	}
@@ -65,10 +64,11 @@ void Game::update(GameTime* gameTime) {
 			<< " | FT: " << gameTime->internalFrameTimeNs() << "ns"
 			<< " | CFT: " << gameTime->completeFrameTimeMs() << "ms";
 
-		renderer->setWindowTitle(ss.str());
+		console->setWindowTitle(ss.str());
 	}
 }
 
 void Game::draw(GameTime* gameTime) {
-	renderer->draw(gameTime);
+
+	console->print();
 }

@@ -1,7 +1,7 @@
 #include "Logger.h"
-#include <time.h>
 #include <iostream>
 #include <sstream>
+#include <time.h>
 
 Logger* Logger::pInstance = nullptr;
 

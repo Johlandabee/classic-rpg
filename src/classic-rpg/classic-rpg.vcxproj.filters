@@ -54,9 +54,6 @@
     <ClCompile Include="game\Player.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="game\Renderer.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="game\UiElement.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -67,6 +64,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="game\scripts\example.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="game\Console.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="game\Camera.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -131,9 +134,6 @@
     <ClInclude Include="game\Player.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="game\Renderer.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="game\ScriptManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -141,6 +141,21 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="game\Utils.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="game\interfaces\IDrawable.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Rect.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Console.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Camera.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Binding.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

@@ -29,13 +29,15 @@ namespace common {
 		DictionaryElement<TKey, TValue>* pLastElement = nullptr;
 		DictionaryElement<TKey, TValue>* pCurrentElement = nullptr;
 
-		int count = 0;
+		unsigned int count = 0;
 
 	public:
 		Dictionary();
 		~Dictionary();
 
 		TValue operator[](const TKey key);
+
+		unsigned int getCount() const;
 
 		void clear();
 		void add(TKey const& key, TValue const& value);
@@ -76,6 +78,11 @@ namespace common {
 		}
 
 		throw logic_error("Key not present");
+	}
+
+	template <class TKey, class TValue>
+	unsigned Dictionary<TKey, TValue>::getCount() const {
+		return count;
 	}
 
 	template <class TKey, class TValue>
