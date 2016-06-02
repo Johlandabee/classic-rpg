@@ -74,6 +74,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>BackSlash</TargetName>
+    <OutDir>$(SolutionDir)..\built\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -116,49 +117,50 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Config.cpp" />
-    <ClCompile Include="Content.cpp" />
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="EntityManager.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameLoop.cpp" />
-    <ClCompile Include="GameTime.cpp" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="Level.cpp" />
-    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="game\Config.cpp" />
+    <ClCompile Include="game\Content.cpp" />
+    <ClCompile Include="game\Entity.cpp" />
+    <ClCompile Include="game\EntityManager.cpp" />
+    <ClCompile Include="game\Game.cpp" />
+    <ClCompile Include="game\GameLoop.cpp" />
+    <ClCompile Include="game\GameTime.cpp" />
+    <ClCompile Include="game\Input.cpp" />
+    <ClCompile Include="game\Level.cpp" />
+    <ClCompile Include="game\Logger.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Npc.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="ScriptManager.cpp" />
-    <ClCompile Include="scripts\example.cpp" />
-    <ClCompile Include="UiElement.cpp" />
-    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="game\Npc.cpp" />
+    <ClCompile Include="game\Player.cpp" />
+    <ClCompile Include="game\Renderer.cpp" />
+    <ClCompile Include="game\ScriptManager.cpp" />
+    <ClCompile Include="game\scripts\example.cpp" />
+    <ClCompile Include="game\UiElement.cpp" />
+    <ClCompile Include="game\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="h\Content.h" />
-    <ClInclude Include="h\ContentFileTypes.h" />
-    <ClInclude Include="h\EntityManager.h" />
-    <ClInclude Include="h\Actions.h" />
-    <ClInclude Include="h\Config.h" />
-    <ClInclude Include="h\Entity.h" />
-    <ClInclude Include="h\Game.h" />
-    <ClInclude Include="h\GameLoop.h" />
-    <ClInclude Include="h\GameTime.h" />
-    <ClInclude Include="h\ItemTypes.h" />
-    <ClInclude Include="h\Level.h" />
-    <ClInclude Include="h\Logger.h" />
-    <ClInclude Include="h\Player.h" />
-    <ClInclude Include="h\Renderer.h" />
-    <ClInclude Include="h\Utils.h" />
-    <ClInclude Include="h\Dictionary.h" />
-    <ClInclude Include="h\List.h" />
-    <ClInclude Include="h\Input.h" />
-    <ClInclude Include="h\Keys.h" />
-    <ClInclude Include="h\Npc.h" />
+    <ClInclude Include="game\Content.h" />
+    <ClInclude Include="game\ContentFileTypes.h" />
+    <ClInclude Include="game\EntityManager.h" />
+    <ClInclude Include="game\Actions.h" />
+    <ClInclude Include="game\Config.h" />
+    <ClInclude Include="game\Entity.h" />
+    <ClInclude Include="game\Game.h" />
+    <ClInclude Include="game\GameLoop.h" />
+    <ClInclude Include="game\GameTime.h" />
+    <ClInclude Include="game\ItemTypes.h" />
+    <ClInclude Include="game\Level.h" />
+    <ClInclude Include="game\Logger.h" />
+    <ClInclude Include="game\Player.h" />
+    <ClInclude Include="game\Renderer.h" />
+    <ClInclude Include="game\Utils.h" />
+    <ClInclude Include="game\Dictionary.h" />
+    <ClInclude Include="game\List.h" />
+    <ClInclude Include="game\Input.h" />
+    <ClInclude Include="game\Keys.h" />
+    <ClInclude Include="game\Npc.h" />
     <ClInclude Include="h\resource.h" />
-    <ClInclude Include="h\ScriptManager.h" />
-    <ClInclude Include="h\UiElement.h" />
+    <ClInclude Include="game\ScriptManager.h" />
+    <ClInclude Include="game\UiElement.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\game.ini" />

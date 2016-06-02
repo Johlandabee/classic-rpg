@@ -1,4 +1,4 @@
-#include "h/GameTime.h"
+#include "GameTime.h"
 #include <thread>
 
 GameTime::GameTime(bool const& isFixedFps, double const& desiredFps) {

@@ -1,6 +1,6 @@
-#include "h/Renderer.h"
-#include "h/Utils.h"
-#include "h/Logger.h"
+#include "Renderer.h"
+#include "Utils.h"
+#include "Logger.h"
 
 // ReSharper disable once CppPossiblyUninitializedMember
 Renderer::Renderer() {

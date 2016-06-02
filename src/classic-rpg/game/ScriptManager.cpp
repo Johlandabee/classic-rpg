@@ -1,5 +1,4 @@
-#include "h/ScriptManager.h"
-
+#include "ScriptManager.h"
 
 
 ScriptManager::ScriptManager()

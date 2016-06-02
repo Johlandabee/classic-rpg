@@ -1,5 +1,5 @@
-#include "h/Input.h"
-#include "h/Logger.h"
+#include "Input.h"
+#include "Logger.h"
 #include <sstream>
 #include <windows.h>
 

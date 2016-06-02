@@ -1,5 +1,5 @@
-#include "h/Utils.h"
-#include "h/Logger.h"
+#include "Utils.h"
+#include "Logger.h"
 #include <windows.h>
 
 void Utils::checkStatus(int status, string errorMessage, bool nuke) {

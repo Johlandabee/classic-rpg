@@ -1,9 +1,9 @@
 #pragma once
-#include "h/Game.h"
-#include "h/Config.h"
+#include "Game.h"
+#include "Config.h"
 #include <sstream>
 #include <iostream>
-#include "h/Logger.h"
+#include "Logger.h"
 
 using namespace std;
 

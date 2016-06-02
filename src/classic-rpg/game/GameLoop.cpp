@@ -1,4 +1,4 @@
-#include "h/GameLoop.h"
+#include "GameLoop.h"
 
 // ReSharper disable once CppPossiblyUninitializedMember
 GameLoop::GameLoop() {
