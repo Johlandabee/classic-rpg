@@ -1,9 +1,12 @@
 #pragma once
 #include "Entity.h"
 
-class Player :
-	public Entity {
-public:
-	Player();
-	~Player();
-};
+namespace Engine
+{
+    class Player :
+        public Entity {
+    public:
+        Player();
+        ~Player();
+    };
+}

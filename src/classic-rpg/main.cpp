@@ -1,7 +1,9 @@
-#include "game/Config.h"
-#include "game/Game.h"
-#include "game/Logger.h"
+#include "Game/Config.h"
+#include "Game/Game.h"
+#include "Game/Logger.h"
 #include <sstream>
+
+using namespace Engine;
 
 int main(int argc, char* argv[], char* envp[]) {
 	auto config = Config("game.ini");

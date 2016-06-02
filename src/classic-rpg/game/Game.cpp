@@ -1,15 +1,15 @@
 #pragma once
-#include "Game.h"
 #include "Config.h"
-#include <sstream>
-#include <iostream>
+#include "Game.h"
 #include "Logger.h"
+#include <iostream>
+#include <sstream>
 
+using namespace Engine;
 using namespace std;
 
-Game::Game(const Config& config) {
-	this->config = config;
-	Game::initialize();
+Game::Game(const Config& config) : config(config) {
+	Base::initialize();
 }
 
 Game::~Game() {
@@ -19,7 +19,7 @@ void Game::initialize() {
 	loadConfig();
 	title = console->getTitle();
 	
-	GameLoop::initialize();
+	Base::initialize();
 }
 
 void Game::loadConfig() {
@@ -34,7 +34,7 @@ void Game::loadConfig() {
 	desiredFrameRate = config.getDoubleValue("dDesiredFrameRate", 59.0);
 	showPerformanceInfo = config.getBooleanValue("bShowPerformanceInfo", false);
 
-	// Keybindings
+	// Key-bindings
 	input.loadBindings(config);
 }
 

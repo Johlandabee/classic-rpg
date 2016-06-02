@@ -1,22 +1,25 @@
 #pragma once
 #include "Config.h"
-#include "GameLoop.h"
+#include "Base.h"
 #include "GameTime.h"
 
-class Game :
-	public GameLoop {
-public:
-	explicit Game(const Config& config);
-	~Game();
+namespace Engine
+{
+    class Game :
+        public Base {
+    public:
+        explicit Game(const Config& config);
+        ~Game();
 
-private:
-	bool showPerformanceInfo;
+    private:
+        bool showPerformanceInfo;
 
-	Config config;
-	string title;
+        Config config;
+        string title;
 
-	void draw(GameTime* gameTime) override;
-	void initialize() override;
-	void loadConfig();
-	void update(GameTime* gameTime) override;
-};
+        void draw(GameTime* gameTime) override;
+        void initialize() override;
+        void loadConfig();
+        void update(GameTime* gameTime) override;
+    };
+}

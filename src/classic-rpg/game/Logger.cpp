@@ -3,6 +3,8 @@
 #include <sstream>
 #include <time.h>
 
+using namespace Engine;
+
 Logger* Logger::pInstance = nullptr;
 
 Logger::Logger(LogLevel logLevel, string fileName) {

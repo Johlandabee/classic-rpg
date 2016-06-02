@@ -1,8 +1,11 @@
 #pragma once
-class Camera
+namespace Engine
 {
-public:
-	Camera();
-	~Camera();
-};
+    class Camera
+    {
+    public:
+        Camera();
+        ~Camera();
+    };
 
+}

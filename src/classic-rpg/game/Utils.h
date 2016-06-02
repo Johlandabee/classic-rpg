@@ -1,9 +1,16 @@
-#pragma once
-#include <string>
+#include "Logger.h"
+#include <windows.h>
 
-using namespace std;
+namespace Utils
+{
+    inline void checkStatus(int status, string errorMessage, bool nuke) {
+        if (status == 0) {
+            status = GetLastError();
+            Engine::Logger::instance()->log(errorMessage, Engine::Logger::MsgPrfxError, status);
 
-class Utils {
-public:
-	static void Utils::checkStatus(int status, string errorMessage, bool nuke = false);
-};
+            if (nuke) {
+                exit(status);
+            }
+        }
+    }
+}

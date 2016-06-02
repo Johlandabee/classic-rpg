@@ -1,6 +1,8 @@
 #include "GameTime.h"
 #include <thread>
 
+using namespace Engine;
+
 GameTime::GameTime(bool const& isFixedFps, double const& desiredFps) {
 	this->isFixedFps = isFixedFps;
 	this->desiredFps = desiredFps;

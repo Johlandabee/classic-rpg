@@ -1,8 +1,11 @@
 #pragma once
-class Npc
+namespace Engine
 {
-public:
-	Npc();
-	~Npc();
-};
+    class Npc
+    {
+    public:
+        Npc();
+        ~Npc();
+    };
+}
 

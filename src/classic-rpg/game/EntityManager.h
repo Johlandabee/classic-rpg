@@ -1,8 +1,11 @@
 #pragma once
-class EntityManager
+namespace Engine
 {
-public:
-	EntityManager();
-	~EntityManager();
-};
+    class EntityManager
+    {
+    public:
+        EntityManager();
+        ~EntityManager();
+    };
+}
 

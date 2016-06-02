@@ -1,5 +1,6 @@
 #include "Content.h"
 
+using namespace Engine;
 
 
 Content::Content()

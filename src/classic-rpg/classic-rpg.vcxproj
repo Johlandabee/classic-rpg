@@ -88,7 +88,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -123,7 +127,7 @@
     <ClCompile Include="game\Entity.cpp" />
     <ClCompile Include="game\EntityManager.cpp" />
     <ClCompile Include="game\Game.cpp" />
-    <ClCompile Include="game\GameLoop.cpp" />
+    <ClCompile Include="game\Base.cpp" />
     <ClCompile Include="game\GameTime.cpp" />
     <ClCompile Include="game\Input.cpp" />
     <ClCompile Include="game\Level.cpp" />
@@ -135,7 +139,6 @@
     <ClCompile Include="game\ScriptManager.cpp" />
     <ClCompile Include="game\scripts\example.cpp" />
     <ClCompile Include="game\UiElement.cpp" />
-    <ClCompile Include="game\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game\Binding.h" />
@@ -147,7 +150,7 @@
     <ClInclude Include="game\Config.h" />
     <ClInclude Include="game\Entity.h" />
     <ClInclude Include="game\Game.h" />
-    <ClInclude Include="game\GameLoop.h" />
+    <ClInclude Include="game\Base.h" />
     <ClInclude Include="game\GameTime.h" />
     <ClInclude Include="game\interfaces\IDrawable.h" />
     <ClInclude Include="game\ItemTypes.h" />

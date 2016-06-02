@@ -1,3 +1,6 @@
 #pragma once
-struct Rect {
-};
+namespace Engine
+{
+    struct Rect {
+    };
+}

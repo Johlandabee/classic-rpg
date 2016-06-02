@@ -9,25 +9,28 @@
 using namespace chrono;
 using namespace std;
 
-class Input {
-public:
-	Input();
-	~Input();
+namespace Engine
+{
+    class Input {
+    public:
+        Input();
+        ~Input();
 
-	bool isAction(Actions action);
-	bool isFocus() const;
-	void bind(Actions action, Keys key, unsigned const int timeout = 0);
-	void loadBindings(const Config& config);
-	void processEvents();
-	void unbind(Actions action);
+        bool isAction(Actions action);
+        BOOLEAN isFocus() const;
+        void bind(Actions action, Keys key, unsigned const int timeout = 0);
+        void loadBindings(const Config& config);
+        void processEvents();
+        void unbind(Actions action);
 
-private:
-	static const unsigned short EVENT_THRESHOLD = 256;
+    private:
+        static const unsigned short EVENT_THRESHOLD = 256;
 
-	bool focus = true;
-	Dictionary<Actions, Binding*> bindings;
-	DWORD events = 0;
-	DWORD read = 0;
-	HANDLE handle = GetStdHandle(STD_INPUT_HANDLE);
-	INPUT_RECORD input[EVENT_THRESHOLD];	
-};
+        BOOLEAN focus = true;
+        Common::Dictionary<Actions, Binding*> bindings;
+        DWORD events = 0;
+        DWORD read = 0;
+        HANDLE handle = GetStdHandle(STD_INPUT_HANDLE);
+        INPUT_RECORD input[EVENT_THRESHOLD];
+    };
+}

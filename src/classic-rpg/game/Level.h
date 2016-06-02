@@ -1,6 +1,9 @@
 #pragma once
-class Level {
-public:
-	Level();
-	~Level();
-};
+namespace Engine
+{
+    class Level {
+    public:
+        Level();
+        ~Level();
+    };
+}

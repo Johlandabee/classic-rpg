@@ -1,8 +1,11 @@
 #pragma once
-class ScriptManager
+namespace Engine
 {
-public:
-	ScriptManager();
-	~ScriptManager();
-};
+    class ScriptManager
+    {
+    public:
+        ScriptManager();
+        ~ScriptManager();
+    };
+}
 

@@ -2,11 +2,11 @@
 
 
 
-Camera::Camera()
+Engine::Camera::Camera()
 {
 }
 
 
-Camera::~Camera()
+Engine::Camera::~Camera()
 {
 }

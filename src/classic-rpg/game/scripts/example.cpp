@@ -1,4 +1,4 @@
-namespace scripts {
+namespace Scripts {
 	void example() {
 		
 	}

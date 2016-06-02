@@ -4,28 +4,32 @@
 using namespace std;
 using namespace chrono;
 
-class GameTime {
-public:
-	explicit GameTime(bool const& isFixedFrameRate, double const& desiredFrameRate);
-	~GameTime();
+namespace Engine
+{
+    class GameTime {
+    public:
+        explicit GameTime(bool const& isFixedFrameRate, double const& desiredFrameRate);
+        ~GameTime();
 
-	void begin();
-	void end();
-	
-	duration<double> frameTime() const;
-	duration<double> elapsed() const;
-	duration<double> elapsedSinceBegin() const;
+        void begin();
+        void end();
 
-	double fps() const;
-	double internalFrameTimeNs() const;
-	double completeFrameTimeMs() const;
+        duration<double> frameTime() const;
+        duration<double> elapsed() const;
+        duration<double> elapsedSinceBegin() const;
 
-private:
-	void wait() const;
+        double fps() const;
+        double internalFrameTimeNs() const;
+        double completeFrameTimeMs() const;
 
-	system_clock::time_point frameBegin, start;
-	duration<double> internalFrameTime, minFrameTime, completeFrameTime;
+    private:
+        void wait() const;
 
-	bool isFixedFps;
-	double desiredFps;
-};
+        system_clock::time_point frameBegin, start;
+        duration<double> internalFrameTime, minFrameTime, completeFrameTime;
+
+        bool isFixedFps;
+        double desiredFps;
+    };
+
+}

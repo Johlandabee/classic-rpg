@@ -3,6 +3,9 @@
 #include <iostream>
 #include <sstream>
 
+using namespace Common;
+using namespace Engine;
+
 Input::Input() {
 	bindings = Dictionary<Actions, Binding*>();
 }
@@ -22,14 +25,14 @@ bool Input::isAction(Actions action) {
 	return false;
 }
 
-bool Input::isFocus() const {
+BOOLEAN Input::isFocus() const {
 	return focus;
 }
 
 void Input::bind(Actions action, Keys key, unsigned const int timeout) {
 	if (bindings.containsKey(action)) {
 		auto ss = stringstream();
-		ss << "Action " << action << " is alredy bound to a key";
+		ss << "Action " << action << " is already bound to a key";
 		Logger::instance()->log(ss.str(), Logger::MsgPrfxWarning);
 		return;
 	}
@@ -62,12 +65,13 @@ void Input::processEvents() {
 		for (unsigned short i = 0; i < process; i++) {
 			switch (input[i].EventType) {
 				case KEY_EVENT:
-					// Todo
+					// ToDo: Key event handler
 					break;
 				case MOUSE_EVENT:
-					// Todo
+					// ToDo: Mouse event handler
 					break;
 				case FOCUS_EVENT:
+					// ToDo: Inspect, doesn't work properly at the moment
 					focus = input[i].Event.FocusEvent.bSetFocus;
 					break;
 			}

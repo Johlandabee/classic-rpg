@@ -1,8 +1,11 @@
 #pragma once
-class Content
+namespace Engine
 {
-public:
-	Content();
-	~Content();
-};
+    class Content
+    {
+    public:
+        Content();
+        ~Content();
+    };
 
+}

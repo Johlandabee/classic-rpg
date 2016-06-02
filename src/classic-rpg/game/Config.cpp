@@ -4,8 +4,9 @@
 #include <sstream>
 #include <string>
 
+using namespace Common;
+using namespace Engine;
 using namespace std;
-using namespace common;
 
 Config::Config(string fileName) {
 	this->fileName = fileName;

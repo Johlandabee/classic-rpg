@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace common {
+namespace Common {
 	template <class T>
 	struct ListElement {
 		explicit ListElement(T const& v) {

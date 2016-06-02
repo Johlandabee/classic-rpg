@@ -2,20 +2,24 @@
 #include "Dictionary.h"
 
 using namespace std;
-using namespace common;
+using namespace Common;
 
-class Config {
-	Dictionary<string, string>* props = nullptr;
-	string fileName;
+namespace Engine
+{
+    class Config {
+        Dictionary<string, string>* props = nullptr;
+        string fileName;
 
-	void loadFile() const;
+        void loadFile() const;
 
-public:
-	explicit Config(string fileName);
-	~Config();
+    public:
+        explicit Config(string fileName);
+        ~Config();
 
-	bool getBooleanValue(string const& key, bool defaultValue) const;
-	double getDoubleValue(string const& key, double defaultValue) const;
-	int getIntValue(string const& key, int defaultValue) const;
-	string getStringValue(string const& key, string defaultValue = "") const;
-};
+        bool getBooleanValue(string const& key, bool defaultValue) const;
+        double getDoubleValue(string const& key, double defaultValue) const;
+        int getIntValue(string const& key, int defaultValue) const;
+        string getStringValue(string const& key, string defaultValue = "") const;
+    };
+
+}

@@ -1,8 +1,11 @@
 #pragma once
-class UiElement
+namespace Engine
 {
-public:
-	UiElement();
-	~UiElement();
-};
+    class UiElement
+    {
+    public:
+        UiElement();
+        ~UiElement();
+    };
 
+}

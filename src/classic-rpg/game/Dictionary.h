@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace common {
+namespace Common {
 	template <class TKey, class TValue>
 	struct DictionaryElement {
 		explicit DictionaryElement(TKey const& k, TValue const& v) {
@@ -69,7 +69,7 @@ namespace common {
 		if (pCurrentElement == nullptr)
 			throw logic_error("Dictionary is empty");
 
-		for (auto i = 0; i < count + 1; i++) {
+		for (unsigned int i = 0; i < count + 1; i++) {
 			if (pCurrentElement->key == key) {
 				return pCurrentElement->value;
 			}
@@ -131,7 +131,7 @@ namespace common {
 		if (count > 0) {
 			pCurrentElement = pFirstElement;
 
-			for (auto i = 1; i < count; i++) {
+			for (unsigned int i = 1; i < count; i++) {
 				if (pCurrentElement->key == key) {
 					if (pCurrentElement->pPreviousElement && pCurrentElement->pNextElement) {
 						pCurrentElement->pPreviousElement->pNextElement = pCurrentElement->pNextElement;
@@ -166,7 +166,7 @@ namespace common {
 		if (count > 0) {
 			pCurrentElement = pFirstElement;
 
-			for (auto i = 0; i < count; i++) {
+			for (unsigned int i = 0; i < count; i++) {
 				if (pCurrentElement->key == key) {
 					pCurrentElement = nullptr;
 					return true;

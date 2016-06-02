@@ -2,6 +2,8 @@
 #include "Logger.h"
 #include "Utils.h"
 
+using namespace Engine;
+
 // ReSharper disable once CppPossiblyUninitializedMember
 Console::Console() {
 }
@@ -11,6 +13,12 @@ Console::~Console() {
 	delete consoleRect;
 }
 
+void Console::addBuffer(char*, unsigned length, unsigned short layer) {
+}
+
+void Console::compose(const char& c) {
+}
+
 void Console::initialize() {
 	charBufferSize = 255;
 
@@ -18,7 +26,7 @@ void Console::initialize() {
 	screenBufferInfo.cbSize = charBufferSize;
 	/////////////////////////////////////////
 
-	// Set inital window and buffer size
+	// Set initial window and buffer size
 	//updateBufferInfo();
 
 	if (isFullscreen) {
@@ -31,7 +39,7 @@ void Console::setFullscreen(const bool& isFullscreen) {
 }
 
 void Console::setWindowSize(short x, short y) {
-	// TODO: All the things
+	// ToDo: All the things
 
 /*	CONSOLE_FONT_INFOEX fontInfo;
 	CONSOLE_CURSOR_INFO cursorInfo;
@@ -91,17 +99,17 @@ void Console::setWindowSize(short x, short y) {
 
 void Console::setWindowTitle(string windowTitle) {
 	Utils::checkStatus(SetConsoleTitle(windowTitle.c_str()),
-		"WINAPI SetConsoleTitle() failed!");
+		"WINAPI SetConsoleTitle() failed!", false);
 
 	windowTitle_ = windowTitle;
 }
 
 void Console::updateBufferInfo() {
-	// Todo
+	// ToDo: Fetch buffer info correctly
 }
 
 void Console::updateBufferSize() const {
-	// Todo
+	// ToDo: Update buffer size properly
 }
 
 void Console::print() {

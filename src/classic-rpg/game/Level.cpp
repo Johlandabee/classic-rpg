@@ -1,5 +1,7 @@
 #include "Level.h"
 
+using namespace Engine;
+
 Level::Level() {
 }
 

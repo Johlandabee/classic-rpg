@@ -1,8 +1,10 @@
 #include "Console.h"
-#include "GameLoop.h"
+#include "Base.h"
+
+using namespace Engine;
 
 // ReSharper disable once CppPossiblyUninitializedMember
-GameLoop::GameLoop() {
+Base::Base() {
 	isRunning = true;
 
 	/* Needs to be initialized before Game()! */
@@ -10,21 +12,21 @@ GameLoop::GameLoop() {
 }
 
 
-GameLoop::~GameLoop() {
+Base::~Base() {
 	delete gameTime;
 	delete console;
 }
 
 
-void GameLoop::initialize() {
+void Base::initialize() {
 	gameTime = new GameTime(isFixedFrameRate, desiredFrameRate);
 	console->initialize();
 
-	/*Todo*/
+	/*ToDo*/
 }
 
 
-void GameLoop::run() {
+void Base::run() {
 	// Main game loop:
 	while (isRunning) {
 		gameTime->begin();
