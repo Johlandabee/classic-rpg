@@ -117,7 +117,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="Content.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="GameTime.cpp" />
@@ -125,17 +127,25 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="ScriptManager.cpp" />
+    <ClCompile Include="scripts\example.cpp" />
+    <ClCompile Include="UiElement.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="h\Content.h" />
+    <ClInclude Include="h\ContentFileTypes.h" />
+    <ClInclude Include="h\EntityManager.h" />
     <ClInclude Include="h\Actions.h" />
     <ClInclude Include="h\Config.h" />
     <ClInclude Include="h\Entity.h" />
     <ClInclude Include="h\Game.h" />
     <ClInclude Include="h\GameLoop.h" />
     <ClInclude Include="h\GameTime.h" />
+    <ClInclude Include="h\ItemTypes.h" />
     <ClInclude Include="h\Level.h" />
     <ClInclude Include="h\Logger.h" />
     <ClInclude Include="h\Player.h" />
@@ -145,7 +155,10 @@
     <ClInclude Include="h\List.h" />
     <ClInclude Include="h\Input.h" />
     <ClInclude Include="h\Keys.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="h\Npc.h" />
+    <ClInclude Include="h\resource.h" />
+    <ClInclude Include="h\ScriptManager.h" />
+    <ClInclude Include="h\UiElement.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config\game.ini" />
@@ -159,10 +172,16 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <Target Name="CopyConfig" AfterTargets="Build">
+    <ItemGroup>
+      <ConfigFiles Include="config/*.ini" />
+    </ItemGroup>
+    <Copy DestinationFolder="$(OutputPath)" SkipUnchangedFiles="True" SourceFiles="@(ConfigFiles)" UseHardlinksIfPossible="True" />
+  </Target>
   <Target Name="CopyContent" AfterTargets="Build">
     <ItemGroup>
-      <ContentFiles Include="config/*.ini" />
+      <ContentFiles Include="content/**/*.scr;content/**/*.lvl;content/**/*.dat;content/**/*.npc;content/**/*.ui;content/**/*.trs;content/**/*.itm;" />
     </ItemGroup>
-    <Copy DestinationFolder="$(OutputPath)" SkipUnchangedFiles="True" SourceFiles="@(ContentFiles)" UseHardlinksIfPossible="True" />
+    <Copy DestinationFolder="$(OutputPath)\content\%(RecursiveDir)" SkipUnchangedFiles="True" SourceFiles="@(ContentFiles)" UseHardlinksIfPossible="True" />
   </Target>
 </Project>

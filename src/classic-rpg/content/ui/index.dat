@@ -1,0 +1,4 @@
+inventory.ui;UI_INVENTORY
+main.ui;UI_MAIN_MENU
+options.ui;UI_OPTIONS_MENU
+pause.ui;UI_PAUSE_MENU

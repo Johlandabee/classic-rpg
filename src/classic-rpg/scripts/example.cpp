@@ -1,0 +1,5 @@
+namespace scripts {
+	void example() {
+		
+	}
+}
