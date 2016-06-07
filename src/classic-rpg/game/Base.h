@@ -5,31 +5,29 @@
 
 namespace Engine
 {
-    class Base {
-    public:
-        Base();
-        virtual ~Base();
-        void run();
+	class Base {
+	public:
+		Base();
+		virtual ~Base();
+		void run();
 
-    protected:
-        bool isFixedFrameRate = true;
-		bool isInitialized = false;
+	protected:
+		bool isFixedFrameRate = true;
 
-        Console console;
-        Input input;
+		Console* console = nullptr;
+		Input* input = nullptr;
 
 		double desiredFrameRate = 60.0;
-        virtual void initialize();
+
+		virtual void initialize();
 		
-		
+	private:
+		GameTime* gameTime = nullptr;
 
-    private:
-        GameTime* gameTime;
+		bool isRunning = false;
+		bool isInitialized = false;
 
-
-        bool isRunning;
-
-        virtual void update(GameTime* gameTime) abstract;
-        virtual void draw(GameTime* gameTime) abstract;
-    };
+		virtual void update(const GameTime* gameTime) abstract;
+		virtual void draw(const GameTime* gameTime) abstract;
+	};
 }

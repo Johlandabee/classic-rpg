@@ -20,62 +20,67 @@ Game::~Game() {
 }
 
 void Game::initialize() {
-	// Init Game; Load config and set vars
+	// Load config
 	loadConfig();
-	console->setWindowTitle(title);
-
-	// Init base
+	// Init base; Console, Input, GameTime
 	Base::initialize();
+	// Key-bindings
+	input->loadBindings(config);
+	// Set window-title
+	console->setWindowTitle(windowTitle);
+	// Set window-size
+	console->setWindowSize(windowX, windowY);
 }
 
 void Game::loadConfig() {
-	title = config.getStringValue("sWindowTitle", "Default");
+	windowTitle = config.getStringValue("sWindowTitle", "Default");
 	startFullscreen = config.getBooleanValue("bFullscreen", false);
 
-	//auto x = config.getIntValue("iScreenWidth", 640);
-	//auto y = config.getIntValue("iScreenHeight", 360);
+	windowX = config.getIntValue("iScreenWidth", 640);
+	windowY = config.getIntValue("iScreenHeight", 360);
 	//console->setWindowSize(x, y);
 
 	isFixedFrameRate = config.getBooleanValue("bFixedFrameRate", true);
-	desiredFrameRate = config.getDoubleValue("dDesiredFrameRate", 59.0);
+	desiredFrameRate = config.getDoubleValue("dDesiredFrameRate", 60.0);
 	showPerformanceInfo = config.getBooleanValue("bShowPerformanceInfo", false);
 	useInputEvents = config.getBooleanValue("bUseInputEvents", false);
-
-	// Key-bindings
-	input.loadBindings(config);
 }
 
-void Game::update(GameTime* gameTime) {
-	// ### Input ###
+void Game::update(const GameTime* gameTime) {
+	// Process actual input events if enabled. Currently WIP
+	if (useInputEvents) {
+		input->processEvents();
+	}
+
 	// Exit on escape
-	if (input.isAction(EngineShutDown)) {
+	if (input->isAction(EngineShutDown)) {
 		Logger::instance()->log("Shutting down...", Logger::MsgPrfxInfo);
 		exit(0);
 	}
 
 	// Toggle performance info
-	if (input.isAction(EngineTogglePerfInfo)) {
+	if (input->isAction(EngineTogglePerfInfo)) {
 		if (showPerformanceInfo) {
-			console->setWindowTitle(title);
+			console->setWindowTitle(windowTitle);
 		}
 		showPerformanceInfo = !showPerformanceInfo;
 	}
 
-	// ### Logic ###
+	// Logic 
 	// Update performance information if enabled (Window title)
 	if (showPerformanceInfo) {
 		auto ss = stringstream();
+		ss.precision(6);
 
-		ss << title;
+		ss << windowTitle;
 		ss << " | FPS: " << gameTime->fps()
-			<< " | FT: " << gameTime->internalFrameTimeNs() << "ns"
+			<< " | FT: " << gameTime->internalFrameTimeUs() << "us"
 			<< " | CFT: " << gameTime->completeFrameTimeMs() << "ms";
 
 		console->setWindowTitle(ss.str());
 	}
 }
 
-void Game::draw(GameTime* gameTime) {
-
-	console->print();
+void Game::draw(const GameTime* gameTime) {
+	
 }

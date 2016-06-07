@@ -3,23 +3,34 @@
 
 using namespace Engine;
 
-// ReSharper disable once CppPossiblyUninitializedMember
 Base::Base() {
-	isRunning = true;
-
-	/* Needs to be initialized before Game! */
-	console = new Console();
+	isRunning = true;	
 }
 
 Base::~Base() {
-	delete gameTime;
-	delete console;
+	if (console != nullptr) {
+		delete console;
+		console = nullptr;
+	}
+
+	if (gameTime != nullptr) {
+		delete console;
+		console = nullptr;
+	}
+
+	if (input != nullptr) {
+		delete console;
+		console = nullptr;
+	}
 }
 
 void Engine::Base::initialize()
 {
+	console = new Console();
 	gameTime = new GameTime(isFixedFrameRate, desiredFrameRate);
-	input = new Input()
+	input = new Input();
+
+	isInitialized = true;
 }
 
 void Base::run() {
@@ -28,9 +39,9 @@ void Base::run() {
 	while (isRunning) {
 		if (isInitialized) {
 			gameTime->begin();
-			input.processEvents();
-			this->update(gameTime);
-			this->draw(gameTime);
+			input->processEvents();
+			update(gameTime);
+			draw(gameTime);
 			gameTime->end();
 		}
 	}

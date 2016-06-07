@@ -19,7 +19,7 @@ namespace Engine
         duration<double> elapsedSinceBegin() const;
 
         double fps() const;
-        double internalFrameTimeNs() const;
+        double internalFrameTimeUs() const;
         double completeFrameTimeMs() const;
 
     private:

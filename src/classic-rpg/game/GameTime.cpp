@@ -47,8 +47,8 @@ duration<double> GameTime::frameTime() const {
 }
 
 
-double GameTime::internalFrameTimeNs() const {
-	return duration_cast<nanoseconds>(internalFrameTime).count();
+double GameTime::internalFrameTimeUs() const {
+	return duration_cast<microseconds>(internalFrameTime).count();
 }
 
 double GameTime::completeFrameTimeMs() const {

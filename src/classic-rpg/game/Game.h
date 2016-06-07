@@ -5,23 +5,27 @@
 
 namespace Engine
 {
-    class Game :
-        public Base {
-    public:
-        explicit Game(const Config& config);
-        ~Game();
+	class Game :
+		public Base {
 
-    private:
-        bool showPerformanceInfo;
+	public:
+		explicit Game(const Config& config);
+		~Game();
+
+	private:
+		bool showPerformanceInfo;
 		bool startFullscreen;
 		bool useInputEvents;
 
-        Config config;
-        string title;
+		unsigned short windowX = 640, windowY = 360;
 
-        void draw(GameTime* gameTime) override;
-        void initialize() override;
-        void loadConfig();
-        void update(GameTime* gameTime) override;
-    };
+		Config config;
+		string windowTitle;
+
+		void loadConfig();
+
+		void initialize() override;
+		void draw(const GameTime* gameTime) override;
+		void update(const GameTime* gameTime) override;
+	};
 }

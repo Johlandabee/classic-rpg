@@ -13,13 +13,9 @@ namespace Engine
         Console();
         ~Console();
 
-        void addBuffer(char*, unsigned int length, unsigned short layer);
-        void compose(const char& c);
-        void initialize();
-        void print();
         void setFullscreen(const bool& isFullscreen);
-        void setWindowSize(short x, short y);
-        void setWindowTitle(string title);
+        void setWindowSize(const unsigned short& x, const unsigned short& y);
+        void setWindowTitle(const string& title);
 
         string getTitle() const;
 

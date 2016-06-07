@@ -4,17 +4,8 @@
 
 using namespace Engine;
 
-// ReSharper disable once CppPossiblyUninitializedMember
 Console::Console() {
-	charBufferSize = 255;
 
-	/////////////// Do not move /////////////
-	screenBufferInfo.cbSize = charBufferSize;
-	/////////////////////////////////////////
-
-	if (isFullscreen) {
-		toggleFullscreeen();
-	}
 }
 
 
@@ -22,21 +13,15 @@ Console::~Console() {
 	delete consoleRect;
 }
 
-void Console::addBuffer(char*, unsigned length, unsigned short layer) {
-}
-
-void Console::compose(const char& c) {
-}
-
 void Console::setFullscreen(const bool& isFullscreen) {
 	this->isFullscreen = isFullscreen;
 }
 
-void Console::setWindowSize(short x, short y) {
-	// Set console window size
+void Console::setWindowSize(const unsigned short& x, const unsigned short& y) {
+
 }
 
-void Console::setWindowTitle(string windowTitle) {
+void Console::setWindowTitle(const string& windowTitle) {
 	Utils::checkStatus(SetConsoleTitle(windowTitle.c_str()),
 		"WINAPI SetConsoleTitle() failed!", false);
 
@@ -44,16 +29,13 @@ void Console::setWindowTitle(string windowTitle) {
 }
 
 void Console::updateBufferInfo() {
-	// ToDo: Fetch buffer info correctly
+
 }
 
 void Console::updateBufferSize() const {
-	// ToDo: Update buffer size properly
+
 }
 
-void Console::print() {
-	
-}
 
 string Console::getTitle() const {
 	return windowTitle_;
