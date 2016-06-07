@@ -13,10 +13,15 @@ namespace Engine
 
     protected:
         bool isFixedFrameRate = true;
-        Console* console;
-        double desiredFrameRate = 60.0;
+		bool isInitialized = false;
+
+        Console console;
         Input input;
+
+		double desiredFrameRate = 60.0;
         virtual void initialize();
+		
+		
 
     private:
         GameTime* gameTime;
@@ -24,7 +29,7 @@ namespace Engine
 
         bool isRunning;
 
-        virtual void update(GameTime* game_time) abstract;
-        virtual void draw(GameTime* game_time) abstract;
+        virtual void update(GameTime* gameTime) abstract;
+        virtual void draw(GameTime* gameTime) abstract;
     };
 }

@@ -7,32 +7,33 @@ using namespace Engine;
 Base::Base() {
 	isRunning = true;
 
-	/* Needs to be initialized before Game()! */
+	/* Needs to be initialized before Game! */
 	console = new Console();
 }
-
 
 Base::~Base() {
 	delete gameTime;
 	delete console;
 }
 
-
-void Base::initialize() {
+void Engine::Base::initialize()
+{
 	gameTime = new GameTime(isFixedFrameRate, desiredFrameRate);
-	console->initialize();
-
-	/*ToDo*/
+	input = new Input()
 }
-
 
 void Base::run() {
 	// Main game loop:
+
 	while (isRunning) {
-		gameTime->begin();
-		input.processEvents();
-		this->update(gameTime);
-		this->draw(gameTime);
-		gameTime->end();
+		if (isInitialized) {
+			gameTime->begin();
+			input.processEvents();
+			this->update(gameTime);
+			this->draw(gameTime);
+			gameTime->end();
+		}
 	}
 }
+
+

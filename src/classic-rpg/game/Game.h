@@ -13,6 +13,8 @@ namespace Engine
 
     private:
         bool showPerformanceInfo;
+		bool startFullscreen;
+		bool useInputEvents;
 
         Config config;
         string title;

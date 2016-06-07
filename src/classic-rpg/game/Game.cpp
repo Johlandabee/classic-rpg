@@ -9,30 +9,37 @@ using namespace Engine;
 using namespace std;
 
 Game::Game(const Config& config) : config(config) {
-	Base::initialize();
+	showPerformanceInfo = false;
+	startFullscreen = false;
+	useInputEvents = false;
+
+	initialize();
 }
 
 Game::~Game() {
 }
 
 void Game::initialize() {
+	// Init Game; Load config and set vars
 	loadConfig();
-	title = console->getTitle();
-	
+	console->setWindowTitle(title);
+
+	// Init base
 	Base::initialize();
 }
 
 void Game::loadConfig() {
-	console->setWindowTitle(config.getStringValue("sWindowTitle", "Default"));
-	console->setFullscreen(config.getBooleanValue("bFullscreen", false));
+	title = config.getStringValue("sWindowTitle", "Default");
+	startFullscreen = config.getBooleanValue("bFullscreen", false);
 
-	auto x = config.getIntValue("iScreenWidth", 640);
-	auto y = config.getIntValue("iScreenHeight", 360);
-	console->setWindowSize(x, y);
+	//auto x = config.getIntValue("iScreenWidth", 640);
+	//auto y = config.getIntValue("iScreenHeight", 360);
+	//console->setWindowSize(x, y);
 
 	isFixedFrameRate = config.getBooleanValue("bFixedFrameRate", true);
 	desiredFrameRate = config.getDoubleValue("dDesiredFrameRate", 59.0);
 	showPerformanceInfo = config.getBooleanValue("bShowPerformanceInfo", false);
+	useInputEvents = config.getBooleanValue("bUseInputEvents", false);
 
 	// Key-bindings
 	input.loadBindings(config);
