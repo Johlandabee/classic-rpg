@@ -1,10 +1,9 @@
 #pragma once
-#include "Entity.h"
+#include "interfaces/IDrawable.h"
 
 namespace Engine
 {
-    class Player :
-        public Entity {
+    class Player : IDrawable {
     public:
         Player();
         ~Player();

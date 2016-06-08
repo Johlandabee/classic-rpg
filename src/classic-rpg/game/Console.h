@@ -1,6 +1,7 @@
 #pragma once
 #include "Camera.h"
 #include "GameTime.h"
+#include "Types.h"
 #include <string>
 #include <windows.h>
 
@@ -13,31 +14,40 @@ namespace Engine
         Console();
         ~Console();
 
+        void initialize();
+        void print() const;
         void setFullscreen(const bool& isFullscreen);
-        void setWindowSize(const unsigned short& x, const unsigned short& y);
+        void setBufferSizePx(const ushort& x, const ushort& y);
         void setWindowTitle(const string& title);
+
+        uint getBufferWidth() const;
+        uint getBufferHeight() const;
+        uint getBufferSize() const;
+
+        Camera* getCamera() const;
 
         string getTitle() const;
 
     private:
-        bool isFullscreen;
+        const HANDLE hStdHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 
-        Camera camera;
-        CHAR_INFO charInfos;
-        CONSOLE_SCREEN_BUFFER_INFOEX screenBufferInfo;
+        CHAR_INFO* buffer = nullptr;
+        uint bufferSize = 0;
 
-        const HANDLE stdHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+        Rectangle rectangle;
+        Camera* camera = nullptr;
 
-        COORD screenBufferSize_, screenBufferPos;
+        string windowTitle = "BackSlash Engine - Default Game";
+        uint charBufferSize = 0;
 
-        int charBufferSize;
+        ushort fontSizeX = 0, fontSizeY = 0;
 
-        PSMALL_RECT consoleRect;
-        SMALL_RECT windowRect;
-        string windowTitle_;
+        bool isFullscreen = false;
+        bool isFontSizeSet = false;
 
-        void toggleFullscreeen();
-        void updateBufferInfo();
-        void updateBufferSize() const;
+        void allocateBuffer();
+        void updateFontSize();
+        void hideCursor() const;
+        
     };
 }

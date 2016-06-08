@@ -2,6 +2,7 @@
 #include "Config.h"
 #include "Base.h"
 #include "GameTime.h"
+#include "EntityManager.h"
 
 namespace Engine
 {
@@ -13,11 +14,13 @@ namespace Engine
 		~Game();
 
 	private:
-		bool showPerformanceInfo;
-		bool startFullscreen;
-		bool useInputEvents;
+        EntityManager* entityManager = nullptr;
 
-		unsigned short windowX = 640, windowY = 360;
+		bool showDebugeInfo = false;
+		bool startFullscreen = false;
+		bool useInputEvents = false;
+
+		ushort windowX = 640, windowY = 360;
 
 		Config config;
 		string windowTitle;

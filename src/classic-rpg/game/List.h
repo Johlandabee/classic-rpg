@@ -27,19 +27,21 @@ namespace Common {
 		ListElement<T>* pLastElement = nullptr;
 		ListElement<T>* pCurrenElement = nullptr;
 
-		int count_ = 0;
+		uint count_ = 0;
 
 	public:
 		List();
 		~List();
 
-		T operator[](const int index);
+		T operator[](const uint index);
 
 		void clear();
 		void add(T const& element);
 		void remove(T const& element);
 
+		uint count() const;
 		bool contains(T const& element);
+
 	};
 
 	template <class T>
@@ -58,7 +60,7 @@ namespace Common {
 	}
 
 	template <class T>
-	T List<T>::operator[](const int index) {
+	T List<T>::operator[](const uint index) {
 		if (index < 0 || index > count_ - 1)
 			throw out_of_range("Index out of range");
 
@@ -145,6 +147,11 @@ namespace Common {
 		}
 
 		count_--;
+	}
+
+	template <class T>
+	unsigned List<T>::count() const {
+		return count_;
 	}
 
 	template <class T>

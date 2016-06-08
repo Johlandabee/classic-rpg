@@ -33,9 +33,6 @@
     <ClCompile Include="game\Content.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="game\Entity.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="game\EntityManager.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -67,6 +64,15 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="game\Base.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Tile.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Rectangle.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\interfaces\IDrawable.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,9 +110,6 @@
     <ClInclude Include="game\Dictionary.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="game\Entity.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="game\EntityManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -140,19 +143,28 @@
     <ClInclude Include="game\Player.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="game\Rect.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="game\ScriptManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="game\UiElement.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="game\Utils.h">
+    <ClInclude Include="game\Base.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="game\Base.h">
+    <ClInclude Include="Game\Tile.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\interfaces\IEntity.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Types.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Rectangle.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Colors.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

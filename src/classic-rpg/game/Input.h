@@ -24,7 +24,7 @@ namespace Engine
         void unbind(Actions action);
 
     private:
-        static const unsigned short EVENT_THRESHOLD = 256;
+        static const ushort EVENT_THRESHOLD = 256;
 
         BOOLEAN focus = true;
         Common::Dictionary<Actions, Binding*> bindings;

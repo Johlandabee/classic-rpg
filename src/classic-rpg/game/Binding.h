@@ -1,5 +1,6 @@
 #pragma once
 #include "Keys.h"
+#include "Types.h"
 #include <chrono>
 
 using namespace std::chrono;
@@ -9,7 +10,7 @@ namespace Engine
     class Binding {
         Keys key;
         system_clock::time_point lastCall;
-        unsigned int timeout;
+        uint timeout;
 
     public:
         explicit Binding(Keys key, unsigned const int timeout) {

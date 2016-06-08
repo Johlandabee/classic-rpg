@@ -62,7 +62,7 @@ void Input::processEvents() {
 	auto process = events < EVENT_THRESHOLD ? events : EVENT_THRESHOLD;
 
 	if (events > 0 && PeekConsoleInput(handle, input, process, &read)) {
-		for (unsigned short i = 0; i < process; i++) {
+		for (ushort i = 0; i < process; i++) {
 			switch (input[i].EventType) {
 				case KEY_EVENT:
 					// ToDo: Key event handler

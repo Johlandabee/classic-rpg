@@ -30,6 +30,8 @@ void Engine::Base::initialize()
 	gameTime = new GameTime(isFixedFrameRate, desiredFrameRate);
 	input = new Input();
 
+	console->initialize();
+
 	isInitialized = true;
 }
 

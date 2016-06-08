@@ -1,5 +1,6 @@
 #pragma once
 #include <stdexcept>
+#include "Types.h"
 
 using namespace std;
 
@@ -29,7 +30,7 @@ namespace Common {
 		DictionaryElement<TKey, TValue>* pLastElement = nullptr;
 		DictionaryElement<TKey, TValue>* pCurrentElement = nullptr;
 
-		unsigned int count = 0;
+		uint count = 0;
 
 	public:
 		Dictionary();
@@ -37,7 +38,7 @@ namespace Common {
 
 		TValue operator[](const TKey key);
 
-		unsigned int getCount() const;
+		uint getCount() const;
 
 		void clear();
 		void add(TKey const& key, TValue const& value);
@@ -69,7 +70,7 @@ namespace Common {
 		if (pCurrentElement == nullptr)
 			throw logic_error("Dictionary is empty");
 
-		for (unsigned int i = 0; i < count + 1; i++) {
+		for (uint i = 0; i < count + 1; i++) {
 			if (pCurrentElement->key == key) {
 				return pCurrentElement->value;
 			}
@@ -131,7 +132,7 @@ namespace Common {
 		if (count > 0) {
 			pCurrentElement = pFirstElement;
 
-			for (unsigned int i = 1; i < count; i++) {
+			for (uint i = 1; i < count; i++) {
 				if (pCurrentElement->key == key) {
 					if (pCurrentElement->pPreviousElement && pCurrentElement->pNextElement) {
 						pCurrentElement->pPreviousElement->pNextElement = pCurrentElement->pNextElement;
@@ -166,7 +167,7 @@ namespace Common {
 		if (count > 0) {
 			pCurrentElement = pFirstElement;
 
-			for (unsigned int i = 0; i < count; i++) {
+			for (uint i = 0; i < count; i++) {
 				if (pCurrentElement->key == key) {
 					pCurrentElement = nullptr;
 					return true;
