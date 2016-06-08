@@ -36,8 +36,10 @@ void Game::initialize() {
     // Setup player; Inject input and "spawn" entity
     player.injectInput(input);
 
-    // Set @ as display char
+    // Set @ as display char and colours
     player.setDisplay(64);
+    player.setBgColor(BG_White);
+    player.setFgColor(FG_Green);
 
     point playerSpawn;
     playerSpawn.X = 0;
