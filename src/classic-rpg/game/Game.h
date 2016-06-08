@@ -3,6 +3,7 @@
 #include "Base.h"
 #include "GameTime.h"
 #include "EntityManager.h"
+#include "Player.h"
 
 namespace Engine
 {
@@ -15,6 +16,7 @@ namespace Engine
 
 	private:
         EntityManager* entityManager = nullptr;
+        Player player;
 
 		bool showDebugeInfo = false;
 		bool startFullscreen = false;

@@ -16,6 +16,8 @@ namespace Engine {
             return position;
         }; 
 
+        // move to world-space coordinate
+        virtual void move(const point& position) = 0;
         virtual void update(const GameTime* gameTime) = 0;
     }; 
 }

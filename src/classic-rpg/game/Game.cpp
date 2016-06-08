@@ -32,6 +32,13 @@ void Game::initialize() {
 	console->setBufferSizePx(windowX, windowY);
     // Create EntityManager instance
     entityManager = new EntityManager();
+
+    // Setup player; Inject input and "spawn" entity
+    player.injectInput(input);
+
+    auto pPlayer = dynamic_cast<IEntity*>(&player);
+
+    entityManager->add(pPlayer);
 }
 
 void Game::loadConfig() {

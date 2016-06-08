@@ -69,9 +69,11 @@ namespace Common {
 		if (pCurrenElement == nullptr)
 			throw out_of_range("List contains no elements");
 
-		for (auto i = 0; i < index + 1; i++) {
-			pCurrenElement = pCurrenElement->pNextElement;
-		}
+	    
+	    for (uint i = 0; i < index; i++) {
+	        pCurrenElement = pCurrenElement->pNextElement;
+	    }
+	    
 
 		return pCurrenElement->value;
 	}

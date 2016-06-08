@@ -28,3 +28,7 @@ void IDrawable::setFgColor(const ForegroundColors & fgColor)
 {
     tile.foregroundColor = fgColor;
 }
+
+bool IDrawable::isCameraScope(const Camera* camera) const {
+    return camera->contains(position);
+}

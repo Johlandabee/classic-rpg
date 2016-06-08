@@ -20,9 +20,9 @@ namespace Engine
         void setDisplay(const int& asciiCode);
         void setBgColor(const BackgroundColors& bgColor);
         void setFgColor(const ForegroundColors& fgColor);
+        bool isCameraScope(const Camera* camera) const;
 
         virtual ~IDrawable() = default;
         virtual void draw(const Console* console) = 0;
-        virtual bool isCameraScope(const Camera* camera) = 0;
     };
 }
