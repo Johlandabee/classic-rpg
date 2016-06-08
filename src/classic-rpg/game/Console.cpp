@@ -124,6 +124,16 @@ void Console::print() const {
 	Logger::instance()->log("CONSOLE: Failed to write console buffer", Logger::MsgPrfxError, status);
 }
 
+void Console::drawTile(const Tile& tile, const uint& bufferPos) const {
+	if(bufferPos > bufferSize) {
+		throw runtime_error("Buffer position out of range");
+	}
+
+	buffer[bufferPos].Attributes = tile.backgroundColor | tile.foregroundColor;
+	buffer[bufferPos].Char.UnicodeChar = tile.display;
+	buffer[bufferPos].Char.AsciiChar = tile.display;
+}
+
 void Console::allocateBuffer() {
 	// If already allocated, delete and set to null pointer for reallocation
 	if(buffer != nullptr) {
@@ -146,7 +156,7 @@ void Console::allocateBuffer() {
 	charInfo.Char.UnicodeChar = 32;
 
 	// Default colours
-	charInfo.Attributes = BG_Blue | FG_Gray;
+	charInfo.Attributes = BG_White | FG_Black;
 
 	for(auto i = 0; i < bufferSize; i++) {
 		buffer[i] = charInfo;

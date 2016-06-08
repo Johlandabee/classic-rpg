@@ -13,12 +13,12 @@ void Player::injectInput(Input* input) {
 }
 
 void Player::move(const point& position) {
-    
+    this->position = position;
 }
 
 void Player::update(const GameTime* gameTime) {
 
-    //Movement
+    //Movement; ToDo
     if(input != nullptr) {
         if(input->isAction(PlayerMoveDown)) {
             position.Y++;
@@ -42,4 +42,5 @@ void Player::update(const GameTime* gameTime) {
 }
 
 void Player::draw(const Console* console) {
+    console->drawTile(tile, position.X * position.Y);
 }

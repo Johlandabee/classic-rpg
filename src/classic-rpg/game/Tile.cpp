@@ -1,7 +1,9 @@
 #include "Tile.h"
 
-Engine::Tile::Tile() {
+using namespace Engine;
+
+Tile::Tile() {
 }
 
-Engine::Tile::~Tile() {
+Tile::~Tile() {
 }

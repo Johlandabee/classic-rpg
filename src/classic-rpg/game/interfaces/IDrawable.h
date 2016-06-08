@@ -8,6 +8,7 @@ namespace Engine
 {
 
     class IDrawable : public IEntity {
+    protected:
         Tile tile;
 
     public:

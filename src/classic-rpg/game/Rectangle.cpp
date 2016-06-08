@@ -1,4 +1,5 @@
 #include "Rectangle.h"
+#include <windows.h>
 
 using namespace Engine;
 
@@ -9,11 +10,10 @@ Rectangle::~Rectangle() {
 }
 
 bool Engine::Rectangle::contains(const point& position) const {
-    if (position.X < (this->position.X + .5*this->width) && position.X > (this->position.X - (.5*this->width)) &&
-        position.Y < (this->position.Y + (.5*this->height)) && position.Y >(.5*this->height))
-        return true;
-
-    return false;
+    POINT point = { position.X, position.Y };
+    RECT rect = { this->position.X, this->position.Y, width, height };
+    
+    return PtInRect(&rect, point);
 }
 
 int Rectangle::surface() const {

@@ -44,5 +44,7 @@ void EntityManager::draw(const Console* console) {
         if(drawable != nullptr && console->getCamera()->contains(entity->getPosition())) {
             drawable->draw(console);
         }
+
+        int o = 0;
     }
 }

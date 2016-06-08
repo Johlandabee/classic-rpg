@@ -17,7 +17,7 @@ namespace Engine
         void update(const GameTime* gameTime) override;
         void follow(IEntity* entity);
         void center(const point& position);
-        void move(const point& position);
+        void move(const point& position) override;
         
         void setSize(const uint& width, const uint& height);
 

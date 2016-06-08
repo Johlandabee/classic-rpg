@@ -36,9 +36,16 @@ void Game::initialize() {
     // Setup player; Inject input and "spawn" entity
     player.injectInput(input);
 
-    auto pPlayer = dynamic_cast<IEntity*>(&player);
+    // Set @ as display char
+    player.setDisplay(64);
 
-    entityManager->add(pPlayer);
+    point playerSpawn;
+    playerSpawn.X = 0;
+    playerSpawn.Y = 0;
+
+    player.move(playerSpawn);
+
+    entityManager->add(dynamic_cast<IEntity*>(&player));
 }
 
 void Game::loadConfig() {
@@ -47,7 +54,6 @@ void Game::loadConfig() {
 
 	windowX = config.getIntValue("iScreenWidth", 640);
 	windowY = config.getIntValue("iScreenHeight", 360);
-	//console->setWindowSize(x, y);
 
 	isFixedFrameRate = config.getBooleanValue("bFixedFrameRate", true);
 	desiredFrameRate = config.getDoubleValue("dDesiredFrameRate", 60.0);
@@ -84,18 +90,21 @@ void Game::update(const GameTime* gameTime) {
         ss << " | FPS: " << gameTime->fps()
             << " | FT: " << gameTime->internalFrameTimeUs() << "us"
             << " | CFT: " << gameTime->completeFrameTimeMs() << "ms"
-            << " | CBS: " << console->getBufferWidth() << "x" << console->getBufferHeight();
+            << " | CBS: " << console->getBufferWidth() << "x" << console->getBufferHeight()
+            << " | PPos: " << player.getPosition().X << "X " << player.getPosition().Y << "Y";
 
 		console->setWindowTitle(ss.str());
 	}
 
     // Update EntityManager; Game logic
     entityManager->update(gameTime);
+
+    // Update camera
+    console->getCamera()->update(gameTime);
 }
 
 void Game::draw(const GameTime* gameTime) {
     entityManager->draw(console);
-
     // setBufferSizePx() must be called ahead
     console->print();
 }

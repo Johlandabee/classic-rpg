@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include "GameTime.h"
 #include "Types.h"
+#include "Tile.h"
 #include <string>
 #include <windows.h>
 
@@ -16,6 +17,7 @@ namespace Engine
 
         void initialize();
         void print() const;
+        void drawTile(const Tile& tile, const uint& bufferPos) const;
         void setFullscreen(const bool& isFullscreen);
         void setBufferSizePx(const ushort& x, const ushort& y);
         void setWindowTitle(const string& title);
